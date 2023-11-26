@@ -3,43 +3,43 @@
 
 
 
+<div class="container">
+    <form action="" method="post" class="w-50 m-auto shadow-sm rounded border p-5 ">
+        <div>
+    
+            <h1 class="h4 m-1"> Enjoy the taste of the best pizza.! 🍕</h1>
+            <h2 class="h6 mt-3">Dear customer,</h2>
+            <p>We are excited to share delightful moments with you! By signing up on our website,
+                you'll gain exclusive access to special offers and amazing releases.</p>
+            <p>Don't miss this one! Register right now.</p>
+        </div>
+        <hr>
+        {% csrf_token %}
+        <h1 class="h3 mb-3 fw-normal">Please Register</h1>
+    
+        <div class="form-floating pt-2">
+            {{form.email}}
+            <label for="id_email">Email address</label>
+        </div>
+        <div class="form-floating pt-2">
+            {{form.username}}
+            <label for="id_username">Username</label>
+        </div>
+        <div class="form-floating pt-2">
+            {{form.password}}
+            <label for="id_password">Password</label>
+        </div>
+        <div class="form-floating pt-2 pb-2">
+            {{form.password2}}
+            <label for="id_password2">Repeat the Password</label>
+        </div>
+        <button class="btn btn-primary w-100 py-2" type="submit">Create user</button>
+    
+    </form>
+
+</div>
 
 
-<form action="" method="post" class="w-50 m-auto shadow-sm rounded border p-5 ">
-    <div>
 
-        <h1 class="h4 m-1"> Join Us to Savor the Best of Pizza! 🍕</h1>
-        <h2 class="h6 mt-3">Dear pizza enthusiast,</h2>
-        <p>We are excited to share delightful moments with you! By signing up on our website,
-            you'll gain exclusive access to special offers, amazing releases, and a unique culinary journey.</p>
-        <p>Don't miss the chance to customize your experiences, receive irresistible offers, and be the first to
-            explore our seasonal flavors.
-            The next perfect slice is waiting for you! Click on "Sign Up" and embark with us on this flavor adventure.
-            We can't wait to welcome you to our community of pizza lovers!</p>
-    </div>
-    <hr>
-    {% csrf_token %}
-    <h1 class="h3 mb-3 fw-normal">Please Register</h1>
-
-    <div class="form-floating pt-2">
-        {{form.email}}
-        <label for="id_email">Email address</label>
-    </div>
-    <div class="form-floating pt-2">
-        {{form.username}}
-        <label for="id_username">Username</label>
-    </div>
-    <div class="form-floating pt-2">
-        {{form.password}}
-        <label for="id_password">Password</label>password2
-    </div>
-    <div class="form-floating pt-2">
-        {{form.password2}}
-        <label for="id_password2">Repeat the Password</label>
-    </div>
-    <button class="btn btn-primary w-100 py-2" type="submit">Create user</button>
-    <p class="mt-5 mb-3 text-body-secondary text-center">© 2023</p>
-</form>
-</main>
 
 {% endblock container %}
