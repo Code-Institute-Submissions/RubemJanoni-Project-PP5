@@ -15,9 +15,8 @@ def about_page(request):
 def contact_page(request):
     contact_form = ContactForm(request.POST or None)
     context = {
-        'title': "Sabor em Cada Mensagem! 🍕📞",
-        'content': "Bem-vindo ao nosso espaço de contato, onde a experiência saborosa da sua pizza\
-                    favorita se encontra com o toque pessoal da Pizzaria Delícia!",
+        'title': "Get in touch! 🍕📞",
+        'content': "Contact us whenever you need.",
         'form': contact_form
     }
     if request.method == 'POST':
@@ -43,12 +42,12 @@ def login_page(request):
         if user is not None:
             print(request.user.is_authenticated)
             login(request, user)
-            print('Login válido')
+            print('Valid login')
             print(request.user.is_authenticated)
             return redirect('/')
 
         else:
-            print('Login inválido')
+            print('invalid login')
     return render(request, 'auth/login.html', context)
 
 

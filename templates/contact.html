@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block container %}
-<div class="container d-flex align-items-center min-vh-100">
+<div class="container d-flex align-items-center min-vh-100 w-70">
     <div class="mx-auto" style="max-width: 800px;">
         <div class=' mb-5'>
             <div class='h4 m-2 text-uppercase'>{{title}}</div>
@@ -10,20 +10,20 @@
         </div>
         <form method="post">
             {% csrf_token %}
-            <div class="mb-3">
+            <div class="mb-2">
                 <label for="exampleFormControlInput1" class="form-label">Email</label>
                 {{form.email}}
                 {{ form.email.errors }}
             </div>
-            <div class="mb-3">
+            <div class="mb-2">
                 <label for="exampleFormControlInput1" class="form-label">Name</label>
                 {{form.name}}
-                {{ form.nome.errors }}
+                {{ form.name.errors }}
             </div>
-            <div class="mb-3">
+            <div class="mb-2">
                 <label for="exampleFormControlTextarea1" class="form-label">Message</label>
-                {{form.mensage}}
-                {{ form.mensage.errors }}
+                {{form.message}}
+                {{ form.message.errors }}
             </div>
             <button type="submit" class="btn btn-sm btn-info">Send</button>
         </form>
