@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block container %}
+
+
+
+<main class="form-signin w-50 m-auto mt-1  p-5 mb-5 bg-body rounded  ">
+    <div>
+        <b class="h4">✨ Personalização Perfeita:</b>
+        <p> Faça login para personalizar suas preferências de pizza. Queremos garantir que cada mordida seja exatamente
+            como você gosta! </p>
+    </div>
+    <form action="" method="post" class="w-50 m-auto shadow-sm rounded border p-5 ">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+        <div class="form-floating">
+            {{form.username}}
+            <label for="id_username">Email address</label>
+        </div>
+        <div class="form-floating">
+            {{form.password}}
+            <label for="id_password">Password</label>
+        </div>
+
+        <div class="form-check text-start my-3">
+            <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                Remember me
+            </label>
+        </div>
+        <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-body-secondary text-center">© 2023</p>
+    </form>
+</main>
+{% endblock container %}
