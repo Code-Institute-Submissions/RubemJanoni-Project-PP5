@@ -26,15 +26,9 @@
 
         body 
         {
-            background-color: rgb(124, 14, 14);
+            background-color: rgb(161, 27, 27);
         }
-
-        .container {
-    /* Adicione estilos adicionais para o seu contêiner, se necessário */
-}
-
-
-        
+               
 
         @media (min-width: 768px) {
             .bd-placeholder-img-lg {
@@ -112,7 +106,7 @@
 
 
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded bg-secondary aria-label=" Eleventh navbar example">
+    <nav class="navbar navbar-expand-lg navbar-custom bg-body-tertiary rounded bg-secondary aria-label=" Eleventh navbar example">
         <div class="container-fluid bg-secondary">
             <a class="navbar-brand d-flex align-items-center" style="margin-right:5rem ;" href="#">
                 <i class="fa-solid fa-pizza-slice" style="color: #f3f4f7"></i>
@@ -125,20 +119,20 @@
 
             <div class="collapse navbar-collapse" id="navbarsExample">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 row w-100">
-                    <li class="nav-item border col text-center">
+                    <li class="nav-item col text-center">
                         <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                     </li>
-                    <li class="nav-item border col text-center">
+                    <li class="nav-item col text-center">
                         <a class="nav-link" href="{% url 'about' %}">About</a>
                     </li>
-                    <li class="nav-item border col text-center">
+                    <li class="nav-item col text-center">
                         <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                     </li>
                     <li class="nav-item col-3 row text-center mx-5">
                         {% if not user.is_authenticated %}
-                        <a class="nav-link col-2" href="{% url 'login' %}">login</a>
+                        <a class="nav-link col-2" href="{% url 'login' %}">Login</a>
                         <div class="nav-link col-1 me-2 mx-2"> or </div>
-                        <a class="nav-link col-2" href="{% url 'register' %}">register</a>
+                        <a class="nav-link col-2" href="{% url 'register' %}">Register</a>
                         {% else %}
                         <div class='col-5 shadow '>
                             <div class="nav-link text-uppercase p-0 d-flex"> <i
