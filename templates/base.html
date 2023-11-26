@@ -39,6 +39,11 @@
         {
             background-color: #6528e0;
         }
+
+        .bg-body-tertiary
+        {
+            background-color: #5a23c8;
+        }
                
 
         @media (min-width: 768px) {
@@ -117,9 +122,9 @@
 
 
 
-    <nav class="navbar navbar-expand-lg navbar-custom bg-body-tertiary rounded bg-secondary navbar-custom" aria-label="Eleventh navbar example">
+    <nav class="navbar navbar-expand-lg navbar-custom bg-body-tertiary rounded bg-secondary" aria-label="Eleventh navbar example">
         <div class="container-fluid bg-secondary">
-            <a class="navbar-brand d-flex align-items-center" style="margin-right:5rem ;" href="#">
+            <a class="navbar-brand d-flex align-items-center navbar-custom" style="margin-right:5rem ;" href="{% url 'home' %}">
                 <i class="fa-solid fa-pizza-slice" style="color: #f3f4f7"></i>
                 <h2 class="h2">&nbsp;&nbsp;La Mamma Pizza</h2>
             </a>
