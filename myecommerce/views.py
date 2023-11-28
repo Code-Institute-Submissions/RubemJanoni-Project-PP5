@@ -15,8 +15,8 @@ def about_page(request):
 def contact_page(request):
     contact_form = ContactForm(request.POST or None)
     context = {
-        'title': "Get in touch! 🍕📞",
-        'content': "Contact us whenever you need.",
+        'title': "Contact 🍕📞",
+        'content': "La MAMMA - The best pizza near you...",
         'form': contact_form
     }
     if request.method == 'POST':
