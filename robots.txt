@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /register/
+Sitemap: https://myecommerce-f6b06812eb2a.herokuapp.com/sitemap.xml
