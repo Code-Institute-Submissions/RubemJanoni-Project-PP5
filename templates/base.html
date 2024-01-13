@@ -141,12 +141,9 @@
 
 <body>
 
-
-
-
-    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded bg-secondary" aria-label="navbar pizzaria">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded bg-secondary m-0 p-0" aria-label="navbar pizzaria">
         <div class="container-fluid navbar-custom">
-            <a class="navbar-brand d-flex align-items-center" style="margin-right:5rem ;" href="{% url 'home' %}">
+            <a class="navbar-brand d-flex align-items-center p-2" style="margin-right:5rem ;" href="{% url 'home' %}">
                 <i class="fa-solid fa-pizza-slice" style="color: rgb(223, 223, 22);"></i>
                 <h2 class="h2">&nbsp;&nbsp;La Mamma Pizza</h2>
             </a>
@@ -154,57 +151,66 @@
                 aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
+    
             <div class="collapse navbar-collapse" id="navbarsExample">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 row w-100">
+                <ul class="navbar-nav d-flex justify-content-center align-items-center me-auto mb-2 mb-lg-0 row w-100">
                     <li class="nav-item col text-center">
                         <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item col text-center">
                         <a class="nav-link" href="{% url 'about' %}">About</a>
                     </li>
+                    <li class="nav-item col dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            aria-expanded="false">Menu</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Pizzas</a></li>
+                            <li><a class="dropdown-item" href="#">Pasta</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item col text-center">
                         <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                     </li>
-                    <li class="nav-item col-3 row text-center mx-5">
-                        {% if not user.is_authenticated %}
-                        <a class="nav-link col-2" href="{% url 'login' %}">Login</a>
-                        <div class="nav-link col-1 me-2 mx-2"> or </div>
-                        <a class="nav-link col-2" href="{% url 'register' %}">Register</a>
-                        {% else %}
-                        <div class='col-5 shadow '>
-                            <div class="nav-link text-uppercase p-0 d-flex"> <i
-                                    class="fa-solid fa-pizza-slice pt-1 pe-1"></i> {{request.user}}</div>
-                            <div class="text-center p-0"><a class="m-0 link-info " style="text-decoration: none;"
-                                    href="{% url 'logout' %}">logout <i
-                                        class="fa-solid fa-arrow-right-from-bracket mx-2"></i></a></div>
-
-
+                    <li class="nav-item col dropdown">
+                        <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <div class="text-center">
+                                <div><i class="fas fa-user fa-lg"></i></div>
+                                <p class="my-0">My Account</p>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                            <a href="" class="dropdown-item">Product Management</a>
+                            <a href="" class="dropdown-item">My Profile</a>
+                            <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                            <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                            <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+    
                         </div>
-                        {% endif %}
-
                     </li>
-
-                    {% comment "User dropdown after" %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                            aria-expanded="false">Dropdown</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                    <li class="nav-item col">
+                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
+                            href="">
+                            <div class="text-center">
+                                <div><i class="fas fa-shopping-bag fa-lg"></i></div>
+                                <p class="my-0">Check Out
+    
+                                </p>
+                            </div>
+                        </a>
                     </li>
-                    {% endcomment %}
+    
                 </ul>
-                {% comment "User search after" %}
-                <form role="search">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                </form>
-                {% endcomment %}
+    
             </div>
+    
         </div>
     </nav>
+
+
+
+
+    
 
 
 
