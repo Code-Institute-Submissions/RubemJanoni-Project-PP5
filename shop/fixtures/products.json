@@ -31,10 +31,10 @@
             "description": "Traditional thin crust, mozzarella cheese, special tomato sauce, black olives and sun-dried tomatoes.",
             "price": 12.80,
             "rating": 4.5,
-            "image_url": "cloudinary://937148837268298:bV36iI54V0myMv2bLzNjJcY3HIw@dnanu3apy",
+            "image_url": "https://res.cloudinary.com/your-account/image/upload/your-image",
             "image": "static/images/pizza1.png",
             "size": "Medium"
         }
 
-    },  
+    } 
 ]
