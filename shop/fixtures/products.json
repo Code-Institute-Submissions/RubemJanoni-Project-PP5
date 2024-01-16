@@ -1,0 +1,40 @@
+[
+    {
+        "model": "shop.category",
+        "pk": 1,
+        "fields": {
+            "name": "Pizza",
+            "friendly_name": "Pizzas"
+        }
+    },
+
+    {
+        "model": "shop.category",
+        "pk": 2,
+        "fields": {
+            "name": "Massa",
+            "friendly_name": "Massas"
+        }
+    },
+
+
+
+
+
+    {
+        "model": "shop.product",
+        "pk": 1,
+        "fields": {
+            "category": 1,
+            "sku": "ABC123",
+            "name": "Pizza Domenico",
+            "description": "Traditional thin crust, mozzarella cheese, special tomato sauce, black olives and sun-dried tomatoes.",
+            "price": 12.80,
+            "rating": 4.5,
+            "image_url": "cloudinary://937148837268298:bV36iI54V0myMv2bLzNjJcY3HIw@dnanu3apy",
+            "image": "static/images/pizza1.png",
+            "size": "Medium"
+        }
+
+    },  
+]
