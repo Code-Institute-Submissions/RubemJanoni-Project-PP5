@@ -7,7 +7,7 @@ class Make_login (LoginView):
     template_name = 'login.html'
 
     def get_success_url(self):
-        return reverse_lazy('shop:List_publication')
+        return reverse_lazy('myecommerce:login_page')
 
     def form_valid(self, form):
         response = super().form_valid(form)
