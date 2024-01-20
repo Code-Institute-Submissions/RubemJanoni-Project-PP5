@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block container %}
+<div class="w-50 m-auto p-2  bg-light" style="margin-top: 10rem!important;">
+    <h1>Your Cart</h1>
+    {% if cart_items %}
+        <ul>
+            {% for item in cart_items %}
+                <li class='row'>
+                    <div class="card col-1" style="width: 15rem;background-color: rgba(255, 255, 255, 0.8)">
+                        <img src="{{item.product.image_url}}" class="card-img-top w-100 p-3" alt="pizza">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">{{item.product.name}}</h6>
+                        </div>
+                    </div>
+                    <div class='col-5'>
+                        {{ item.quantity }} units of {{ item.product.name }} - ${{ item.product.price|floatformat:2 }} per unit
+                    </div>
+                    
+                    
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+
+</div>
+
+{% endblock container %}

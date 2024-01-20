@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block container %}
+
+<h1>Product List</h1>
+    {% if products %}
+        <ul>
+            {% for product in products %}
+                <li>{{ product.name }} - {{ product.price }} <a href="#">Add to Cart</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No products available.</p>
+    {% endif %}
+
+
+{% endblock container %}
