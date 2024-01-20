@@ -4,89 +4,22 @@
 
 <div class="container mx-auto mt-5 mb-2 p-4">
     <div class="row justify-content-center">
-        <div class="col-lg-4 col-md-6 col-sm-12 mt-4 mb-4">
-            <div class="card" style="width: 15rem;background-color: rgba(255, 255, 255, 0.8)">
-                <img src="{% static 'images/pizza1.png' %}" class="card-img-top w-100 p-3" alt="pizza">
-                <div class="card-body text-center">
-                    <h6 class="card-title">Pizza Domenico</h6>
-                    <p class="card-text small">Traditional thin crust, mozzarella cheese, special tomato sauce, black olives and sun-dried
-                        tomatoes.</p>
-                    <p class="card-text">12.50</p>
-                    <a href="#" class="btn btn-success btn-sm">Add</a>
+        {% for p in product  %}
+            <div class="col-lg-4 col-md-6 col-sm-12 mt-4 mb-4">
+                <div class="card" style="width: 15rem;background-color: rgba(255, 255, 255, 0.8)">
+                    <img src="{% static 'images/pizza1.png' %}" class="card-img-top w-100 p-3" alt="pizza">
+                    <div class="card-body text-center">
+                        <h6 class="card-title">{{p.name}}</h6>
+                        <p class="card-text small">{{p.description}}</p>
+                        <p class="card-text">${{p.price}}</p>
+                        <a href="{% url "add_to_cart" p.id %}" class="btn btn-success btn-sm">Add</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mt-4 mb-4">
-            <div class="card" style="width: 15rem;background-color: rgba(255, 255, 255, 0.8)">
-                <img src="{% static 'images/pizza2.png' %}" class="card-img-top w-100 p-3" alt="pizza">
-                <div class="card-body text-center">
-                    <h6 class="card-title">Pizza Marguerita</h6>
-                    <p class="card-text small">Traditional thin pasta, buffalo mozzarella, special tomato sauce and basil.</p>
-                    <p class="card-text">12.80</p>
-                    <a href="#" class="btn btn-success btn-sm">Add</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mt-4 mb-4">
-            <div class="card" style="width: 15rem;background-color: rgba(255, 255, 255, 0.8)">
-                <img src="{% static 'images/pizza3.png' %}" class="card-img-top w-100 p-3" alt="pizza">
-                <div class="card-body text-center">
-                    <h6 class="card-title">Pizza Pomodoro</h6>
-                    <p class="card-text small">Traditional thin crust, Padano cheese, special tomato sauce, tomatoes,
-                        mushroom, pepper
-                        and black olives.</p>
-                    <p class="card-text">10.50</p>
-                    <a href="#" class="btn btn-success btn-sm">Add</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mt-4 mb-4">
-            <div class="card" style="width: 15rem;background-color: rgba(255, 255, 255, 0.8)">
-                <img src="{% static 'images/pizza4.png' %}" class="card-img-top w-100 p-3" alt="pizza">
-                <div class="card-body text-center">
-                    <h6 class="card-title">Pizza Brocolli Speciale</h6>
-                    <p class="card-text small">Traditional thin crust, Padano cheese, special tomato sauce, brocolli and black
-                        olives.</p>
-                    <p class="card-text">13.50</p>
-                    <a href="#" class="btn btn-success btn-sm">Add</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mt-4 mb-4">
-            <div class="card" style="width: 15rem;background-color: rgba(255, 255, 255, 0.8)">
-                <img src="{% static 'images/pizza5.png' %}" class="card-img-top w-100 p-3" alt="pizza">
-                <div class="card-body text-center">
-                    <h6 class="card-title">Pizza Chicken and Bacon</h6>
-                    <p class="card-text small">Traditional thin crust, Padano cheese, special tomato sauce and bacon.</p>
-                    <p class="card-text">14.50</p>
-                    <a href="#" class="btn btn-success btn-sm">Add</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mt-4 mb-4">
-            <div class="card" style="width: 15rem;background-color: rgba(255, 255, 255, 0.8)">
-                <img src="{% static 'images/pizza6.png' %}" class="card-img-top w-100 p-3" alt="pizza">
-                <div class="card-body text-center">
-                    <h6 class="card-title">Pizza Napolitana</h6>
-                    <p class="card-text small">Traditional thin crust, Padano cheese, special tomato sauce, pepper, basil and
-                        black
-                        olives.</p>
-                    <p class="card-text">9.50</p>
-                    <a href="#" class="btn btn-success btn-sm">Add</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mt-4 mb-4">
-            <div class="card" style="width: 15rem;background-color: rgba(255, 255, 255, 0.8)">
-                <img src="{% static 'images/pizza7.png' %}" class="card-img-top w-100 p-3" alt="pizza">
-                <div class="card-body text-center">
-                    <h6 class="card-title">Pizza Chocolate M&M</h6>
-                    <p class="card-text small">Traditional thin crust, mozzarella cheese, chocolate and m&m.</p>
-                    <p class="card-text">11.50</p>
-                    <a href="#" class="btn btn-success btn-sm">Add</a>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
+        
+       
+        
 
     </div>
 
