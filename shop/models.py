@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -14,7 +15,7 @@ class Category(models.Model):
 
     def get_friendly_name(self):
         return self.friendly_name
-
+    
 
 class Product(models.Model):
     category = models.ForeignKey(
@@ -36,7 +37,40 @@ class Product(models.Model):
     size = models.CharField(
         max_length=10, choices=SIZE_CHOICES, null=True, blank=True)
 
-    
-
     def __str__(self):
         return self.name
+
+    
+class Cart(models.Model):
+    # Ligaçaõ do usuario associado ao carrinho
+    user = models.OneToOneField(User, on_delete = models.CASCADE)
+    # Produtos para serem adicionados ao carrinho 
+    products = models.ManyToManyField(Product, through="CartItem")
+
+    def __str__(self):
+        return f'Cart - {self.user.username}'
+
+
+class CartItem(models.Model):
+    # Nome do produto adicionado ao carrinho
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    # Ligação da quantidade de cada item no carrinho
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    # Numero de unidades do pedido
+    quantity = models.PositiveBigIntegerField(default=1)
+
+    def __str__(self):
+        return f'{self.quantity} x {self.product.name} in cart'
+    
+class Order(models.Model):
+    # Usuario que fez o pedido
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # Itens do pedido
+    items = models.ManyToManyField(CartItem)
+    # Preço  total de pedido
+    total_price = models.DecimalField(max_digits=8, decimal_places=2)
+    # Hora e data em que o pedido foi feito
+    order_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Order - {self.user.username} - {self.order_date}'
