@@ -2,10 +2,11 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, get_user_model, logout
 from .forms import ContactForm, LoginForm, RegisterForm
+from shop.models import Product
 
 
 def home_page(request):
-    return render(request, "home.html", {})
+    return render(request, "home.html", {'product':Product.objects.all()})
 
 
 def about_page(request):
@@ -73,3 +74,8 @@ def register_page(request):
 def logout_page(request):
     logout(request)
     return redirect('login')
+
+
+
+
+
