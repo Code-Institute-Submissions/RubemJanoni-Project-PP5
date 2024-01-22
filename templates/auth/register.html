@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block container %}
 
-
+{% extends "base.html" %}
+{% block container %}
 
 <div class="container dflex justify-content-center align-items-center mt-5 p-4">
     <form action="{% url 'register' %}" method="POST" class="col-12 col-md-6 col-sm-3 mx-auto shadow-sm rounded p-3" style="background-color: rgba(0, 0, 0, 0.5);">
@@ -10,31 +11,51 @@
             <p class="text-white">By signing up on our website, you get exclusive access to special offers and amazing releases.</p>
             <p class="text-white">Don't miss this one! Register right now.</p>
         </div>
+
+        {% if messages %}
+            <div class="alert alert-info">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
         
         {% csrf_token %}
         <h4 class="mb-2 fw-normal text-white">Please Register</h4>
-    
+
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        {{ error }}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
         <div class="form-control-sm p-0">
-            {{form.email}}
+            {{ form.email }}
             <label for="id_email"></label>
         </div>
         <div class="form-control-sm p-0">
-            {{form.username}}
+            {{ form.username }}
             <label for="id_username"></label>
         </div>
         <div class="form-control-sm p-0">
-            {{form.password}}
+            {{ form.password }}
             <label for="id_password"></label>
         </div>
         <div class="form-control-sm p-0">
-            {{form.password2}}
+            {{ form.password2 }}
             <label for="id_password2"></label>
         </div>
         <button class="btn btn-primary w-100 py-2" type="submit">Create user</button>
-    
     </form>
-
 </div>
+
+{% endblock container %}
+
+
 
 
 

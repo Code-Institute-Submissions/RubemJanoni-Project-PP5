@@ -55,30 +55,39 @@ def login_page(request):
 User = get_user_model()
 
 
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+
 def register_page(request):
     form = RegisterForm(request.POST or None)
-    context = {
-        'form': form
-    }
-    if form.is_valid():
-        username = form.cleaned_data.get('username')
-        email = form.cleaned_data.get('email')
-        password = form.cleaned_data.get('password')
+    context = {'form': form}
 
-        if not User.objects.filter(username=username).exists() and not User.objects.filter(email=email).exists():
-            new_user = User.objects.create_user(username, email, password)
-            print("User created:", new_user)
-            return redirect('login')  # Redireciona para a página de login após o registro
-        else:
-            form.add_error('username', 'Username or email already exists.')
+    if request.method == 'POST':
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
 
-    return render(request, "auth/register.html", context)
+            # Use get_or_create para criar o usuário ou obter se já existir
+            user, created = User.objects.get_or_create(username=username, email=email)
+
+            if created:
+                # Usuário criado com sucesso
+                messages.success(request, 'Account created successfully. Please log in.')
+                return redirect('login')
+            else:
+                # Usuário ou email já existente
+                form.add_error('username', 'Username or email already exists.')
+
+    return render(request, 'auth/register.html', context)
+
         
 
 
 def logout_page(request):
     logout(request)
-    return redirect('login')
+    return redirect('logout')
 
 
 
