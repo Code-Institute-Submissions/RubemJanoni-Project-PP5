@@ -64,11 +64,16 @@ def register_page(request):
         username = form.cleaned_data.get('username')
         email = form.cleaned_data.get('email')
         password = form.cleaned_data.get('password')
-        new_user = User.objects.create_user(username, email, password)
 
-        print(new_user)
+        if not User.objects.filter(username=username).exists() and not User.objects.filter(email=email).exists():
+            new_user = User.objects.create_user(username, email, password)
+            print("User created:", new_user)
+            return redirect('login')  # Redireciona para a página de login após o registro
+        else:
+            form.add_error('username', 'Username or email already exists.')            
 
-    return render(request, "auth/register.html", context)
+        return render(request, "auth/register.html", context)
+        
 
 
 def logout_page(request):
