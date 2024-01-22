@@ -7,21 +7,21 @@ class ContactForm(forms.Form):
         error_messages={'required': 'This field is mandatory.'},
         widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Write your email'}),
+            'placeholder': 'Email'}),
 
     )
     name = forms.EmailField(
         error_messages={'required': 'This field is mandatory.'},
         widget=forms.EmailInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Write your name',
+            'placeholder': 'Name',
             'required': True})
     )
     message = forms.CharField(
         error_messages={'required': 'This field is mandatory.'},
         widget=forms.Textarea(attrs={
             'class': 'form-control',
-            'placeholder': 'Write your message'})
+            'placeholder': 'Leave a comment'})
     )
 
 

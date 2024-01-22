@@ -5,38 +5,55 @@
 
 {% block container %}
 
-
-
-
-<div class="container align-items-center justify-content-center" style="max-width:800px;">
-    <div class="mx-auto my-5">
-        <div class='mb-5'>
-            <div class='h3 m-2 text-uppercase text-white-shadow'>{{title}}</div>
-            <div class='fs-3 m-2 text-white-shadow'>{{content}}</div>
+<div class="container col-12 mt-5 p-3">
+    <div class="row justify-content-center align-items-center mx-auto mt-4 p-3">          
+        <div class="col-12 col-md-6 col-lg-4 col-sm-3">
+            <form action="{% url 'contact' %}" method="POST" class="form mb-2 p-4 rounded" style="background-color: rgba(0, 0, 0, 0.5);">
+                {% csrf_token %}
+                <div class="col text-center mb-2">
+                    <img class="mb-3" src="{% static 'images/pizza-login3.png' %}" alt="pizza" width="60" height="60" />
+                    <h1 class="h3 mb-3 font-weight-normal text-white-shadow">Contact Us</h1>  
+                </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <label for="name" class="form-label text-white-shadow">Name</label>
+                        {{form.name}}
+                        {{ form.name.errors }}                        
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <label for="email" class="form-label text-white-shadow">Email</label>
+                        {{form.email}}
+                        {{ form.email.errors }}                        
+                    </div>
+                </div>                
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="message" class="form-label text-white-shadow">Message</label>
+                        {{form.message}}
+                        {{ form.message.errors }}                        
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary btn-sm w-100">Submit</button>
+                    </div>
+                </div>
+            </form>                
         </div>
-        <form method="post">
-            {% csrf_token %}
-            <div class="mb-1 col-8 mx-auto">
-                <label for="exampleFormControlInput1" class="form-label text-white-shadow">Email</label>
-                {{form.email}}
-                {{ form.email.errors }}
-            </div>
-            <div class="mb-1 col-8 mx-auto">
-                <label for="exampleFormControlInput1" class="form-label text-white-shadow">Name</label>
-                {{form.name}}
-                {{ form.name.errors }}
-            </div>
-            <div class="mb-1 col-8 mx-auto">
-                <label for="exampleFormControlTextarea1" class="form-label text-white-shadow" style="height: 30px;">Message</label>
-                {{form.message}}
-                {{ form.message.errors }}
-            </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-sm btn-info mb-2">Send</button>
-            </div>
-        </form>
     </div>
-</div>
+</div>    
+
+
+
+
+
+
 
 
 {% endblock container %}
+
+
+
+
