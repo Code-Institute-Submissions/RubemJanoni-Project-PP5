@@ -3,30 +3,30 @@
 
 
 
-<div class="container">
-    <form action="" method="post" class="w-50 m-auto shadow-sm rounded border p-5 ">
+<div class="container dflex justify-content-center">
+    <form action="" method="post" class="col-12 col-md-6 col-sm-3 w-50 m-auto shadow-sm rounded p-4 ">
         <div>
-            <h1 class="h4 m-1 text-white"> Enjoy the taste of the best pizza.! 🍕</h1>
+            <h2 class="m-1 text-white"> Enjoy the taste of the best pizza.! 🍕</h2>
             <p class="text-white">By signing up on our website, you get exclusive access to special offers and amazing releases.</p>
             <p class="text-white">Don't miss this one! Register right now.</p>
         </div>
         
         {% csrf_token %}
-        <h1 class="h3 mb-3 fw-normal">Please Register</h1>
+        <h4 class="mb-2 fw-normal">Please Register</h4>
     
-        <div class="form-floating pt-2">
+        <div class="form-control-sm p-0">
             {{form.email}}
             <label for="id_email"></label>
         </div>
-        <div class="form-floating pt-2">
+        <div class="form-control-sm p-0">
             {{form.username}}
             <label for="id_username"></label>
         </div>
-        <div class="form-floating pt-2">
+        <div class="form-control-sm p-0">
             {{form.password}}
             <label for="id_password"></label>
         </div>
-        <div class="form-floating pt-2 pb-2">
+        <div class="form-control-sm p-0">
             {{form.password2}}
             <label for="id_password2"></label>
         </div>
