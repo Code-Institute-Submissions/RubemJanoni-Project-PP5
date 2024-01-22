@@ -70,9 +70,9 @@ def register_page(request):
             print("User created:", new_user)
             return redirect('login')  # Redireciona para a página de login após o registro
         else:
-            form.add_error('username', 'Username or email already exists.')            
+            form.add_error('username', 'Username or email already exists.')
 
-        return render(request, "auth/register.html", context)
+    return render(request, "auth/register.html", context)
         
 
 
