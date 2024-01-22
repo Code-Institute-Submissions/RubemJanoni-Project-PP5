@@ -3,35 +3,35 @@
 
 
 
-<div class="container">
-    <form action="" method="post" class="w-50 m-auto shadow-sm rounded border p-5 ">
+<div class="container d-flex justify-content-center mt-5 mb-5">
+    <form action="{% url 'register' %}" method="post" class="w-50 shadow-sm rounded border p-5" style="background-color: rgba(0, 0, 0, 0.5);">
         <div>
     
-            <h1 class="h4 m-1"> Enjoy the taste of the best pizza.! 🍕</h1>
-            <h2 class="h6 mt-3">Dear customer,</h2>
-            <p>We are excited to share delightful moments with you! By signing up on our website,
+            <h1 class="h4 m-1 text-white-shadow"> Enjoy the taste of the best pizza.! 🍕</h1>
+            <h2 class="h6 mt-3 text-white-shadow">Dear customer,</h2>
+            <p class="text-white-shadow">We are excited to share delightful moments with you! By signing up on our website,
                 you'll gain exclusive access to special offers and amazing releases.</p>
-            <p>Don't miss this one! Register right now.</p>
+            <p class="text-white-shadow">Don't miss this one! Register right now.</p>
         </div>
         <hr>
         {% csrf_token %}
-        <h1 class="h3 mb-3 fw-normal">Please Register</h1>
+        <h1 class="h3 mb-3 fw-normal text-white-shadow">Please Register</h1>
     
-        <div class="form-floating pt-2">
+        <div class="form-control-sm">
             {{form.email}}
-            <label for="id_email">Email address</label>
+            <label for="id_email"></label>
         </div>
-        <div class="form-floating pt-2">
+        <div class="form-control-sm">
             {{form.username}}
-            <label for="id_username">Username</label>
+            <label for="id_username"></label>
         </div>
-        <div class="form-floating pt-2">
+        <div class="form-control-sm">
             {{form.password}}
-            <label for="id_password">Password</label>
+            <label for="id_password"></label>
         </div>
-        <div class="form-floating pt-2 pb-2">
+        <div class="form-control-sm">
             {{form.password2}}
-            <label for="id_password2">Confirm Password</label>
+            <label for="id_password2"></label>
         </div>
         <button class="btn btn-primary w-100 py-2" type="submit">Create user</button>
     

@@ -2,43 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
 from django.contrib import messages
-
-
-# Create your views here.
-"""
-# Para usar LoginView é preciso "from django.contrib.auth.views import LoginView"
-class Make_login (LoginView):
-    template_name = 'login.html'
-
-    def get_success_url(self):
-        # Para usar reverse_lazy é preciso "from django.urls import reverse_lazy"
-        return reverse_lazy('shop:List_publication')
-
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        # Para usar messages é preciso "from django.contrib import messages "
-        messages.success(self.request, 'Login successfully. Welcome!')
-        return response
-
-    def form_invalid(self, form):
-        response = super().form_invalid(form)
-        messages.error(self.request, 'Something is wrong, Try again.')
-        return response
-
-    def get(self, request, *args, **kwargs):
-        if self.request.user.is_authenticated:
-            # Para usar redirect é preciso " from django.shortcuts import redirect "
-            return redirect(self.get_success_url())
-
-        return super().get(request, *args, **kwargs)
-    """
-
-# ########################################################
 from django.views import View
 from .models import CartItem, Product, Order, Cart
 from django.contrib.auth.decorators import login_required
 
 @login_required
+
 def add_to_cart(request, product_id):
     # Verifica se o produto existe, validando com o get_object_or_404
     product = get_object_or_404(Product, id = product_id)
