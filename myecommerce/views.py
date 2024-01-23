@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, get_user_model, logout
 from .forms import ContactForm, LoginForm, RegisterForm
 from shop.models import Product
+from django.contrib import messages
+
 
 
 def home_page(request):
@@ -55,10 +57,6 @@ def login_page(request):
 User = get_user_model()
 
 
-from django.contrib import messages
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-
 def register_page(request):
     form = RegisterForm(request.POST or None)
     context = {'form': form}
@@ -87,7 +85,7 @@ def register_page(request):
 
 def logout_page(request):
     logout(request)
-    return redirect('logout')
+    return redirect('login')
 
 
 
