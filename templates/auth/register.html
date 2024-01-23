@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% load static %}
+
+
 {% block container %}
 
-{% extends "base.html" %}
-{% block container %}
 
 <div class="container dflex justify-content-center align-items-center mt-5 p-4">
-    <form action="{% url 'register' %}" method="POST" class="col-12 col-md-6 col-sm-3 mx-auto shadow-sm rounded p-3" style="background-color: rgba(0, 0, 0, 0.5);">
+    <form action="{% url 'register' %}" method="POST" class="col-12 col-md-6 col-lg-4 col-sm-3 mx-auto shadow-sm rounded p-4" style="background-color: rgba(0, 0, 0, 0.5); max-width: 400px;">
         <div>
             <h3 class="m-1 text-white"> Enjoy the taste of the best pizza! 🍕</h3>
             <p class="text-white">By signing up on our website, you get exclusive access to special offers and amazing releases.</p>
@@ -62,4 +63,3 @@
 
 
 
-{% endblock container %}
