@@ -72,20 +72,17 @@ def register_page(request):
             new_user = User.objects.create_user(username, email, password)
             messages.success(request, 'Account created successfully. Please login.')
             print(new_user)
-            return redirect('login_page')
-                   
+            return redirect('login_page')                  
                 
                
 
         except Exception as e:
             messages.error(request, f"Error creating user: {e}")
-            print(f"Error creating user: {e}")
-
-            
+            print(f"Error creating user: {e}")           
             
        
 
-    return render(request, "auth/register.html", context)
+        return render(request, "auth/register.html", context)
 
         
 
