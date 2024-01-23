@@ -59,26 +59,18 @@ User = get_user_model()
 
 def register_page(request):
     form = RegisterForm(request.POST or None)
-    context = {'form': form}
+    context = {
+        'form': form
+    }
+    if form.is_valid():
+        username = form.cleaned_data.get('username')
+        email = form.cleaned_data.get('email')
+        password = form.cleaned_data.get('password')
+        new_user = User.objects.create_user(username, email, password)
 
-    if request.method == 'POST':
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            email = form.cleaned_data.get('email')
-            password = form.cleaned_data.get('password')
+        print(new_user)
 
-            # Use get_or_create para criar o usuário ou obter se já existir
-            user, created = User.objects.get_or_create(username=username, email=email)
-
-            if created:
-                # Usuário criado com sucesso
-                messages.success(request, 'Account created successfully. Please log in.')
-                return redirect('login')
-            else:
-                # Usuário ou email já existente
-                form.add_error('username', 'Username or email already exists.')
-
-    return render(request, 'auth/register.html', context)
+    return render(request, "auth/register.html", context)
 
         
 
