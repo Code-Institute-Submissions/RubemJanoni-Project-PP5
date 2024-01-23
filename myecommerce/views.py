@@ -66,9 +66,24 @@ def register_page(request):
         username = form.cleaned_data.get('username')
         email = form.cleaned_data.get('email')
         password = form.cleaned_data.get('password')
-        new_user = User.objects.create_user(username, email, password)
 
-        print(new_user)
+        try:
+
+            new_user = User.objects.create_user(username, email, password)
+            messages.success(request, 'Account created successfully. Please login.')
+            print(new_user)
+            return redirect('login_page')
+                   
+                
+               
+
+        except Exception as e:
+            messages.error(request, f"Error creating user: {e}")
+            print(f"Error creating user: {e}")
+
+            
+            
+       
 
     return render(request, "auth/register.html", context)
 
