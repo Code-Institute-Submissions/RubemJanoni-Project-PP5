@@ -246,17 +246,12 @@
                         </li>
                         <li class="nav-item col">
                             <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
-                                href="">
+                                href="{% url 'cart' %}">
                                 <div class="text-center">
-                                    <div><i class="fas fa-shopping-bag fa-lg"></i></div>
-                                    <p class="my-0">Check Out
-                                        {% if grand_total %}
-                                        ${{ grand_total|floatformat:2 }}
-                                        {% else %}
-                                        $0.00
-                                        {% endif %}
-        
-                                    </p>
+                                    <div><i class="fas fa-shopping-bag fa-lg text-light"></i></div>
+                                    <p class="my-0 text-light">Check Out
+                                        ${{ request.session.cart_total|default:0.00 }}</p>
+                                    <p class='text-light'>0{{ request.session.cart_items|default:0 }} Items in <i class="fa-solid fa-cart-shopping text-light"></i></p>
                                 </div>
                             </a>
                         </li>
@@ -266,6 +261,13 @@
                 </div>
         
             </div>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
 
             {% if messages %}
             <div class="alert alert-success" role="alert" id="my-alert">
