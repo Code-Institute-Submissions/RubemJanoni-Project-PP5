@@ -6,7 +6,7 @@ from shop.models import Product
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.views.decorators.http import require_POST
 
 
@@ -94,26 +94,31 @@ def login_page(request):
 User = get_user_model()
 
 def register_page(request):
-    """
-    Renders the registration page and creates a new user account.
-    """
-    form = UserCreationForm(request.POST or None)
+    form = RegisterForm(request.POST or None)
     context = {
         'form': form
     }
     if form.is_valid():
-        user = form.save()
+        username = form.cleaned_data.get('username')
+        email = form.cleaned_data.get('email')
+        password = form.cleaned_data.get('password')
 
-        # Autenticar e fazer login no usuário após o registro bem-sucedido
-        user = authenticate(request, username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
-        login(request, user)
+        try:
 
-        messages.success(request, 'User account created successfully.')
+            new_user = User.objects.create_user(username, email, password)
+            messages.success(request, 'Account created successfully. Please login.')
+            print(new_user)
+            return redirect('login_page')                  
+                
+               
 
-        # Redirecionar para a página desejada após o registro
-        return redirect('/')  # Substitua 'página_de_redirecionamento' pelo nome da sua view ou URL
+        except Exception as e:
+            messages.error(request, f"Error creating user: {e}")
+            print(f"Error creating user: {e}")           
+            
+       
 
-    return render(request, "auth/register.html", context)
+        return render(request, "auth/register.html", context)
 
 
 
