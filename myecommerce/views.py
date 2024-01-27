@@ -5,18 +5,29 @@ from .forms import ContactForm, LoginForm, RegisterForm
 from shop.models import Product
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
-
+from django import forms
+from django.contrib.auth.forms import AuthenticationForm
+from django.views.decorators.http import require_POST
 
 
 def home_page(request):
+    """
+    render homepage displaying all products
+    """
     return render(request, "home.html", {'product':Product.objects.all()})
 
 
 def about_page(request):
+    """
+    render about page displaying all products
+    """
     return render(request, "about.html")
 
 
 def contact_page(request):
+    """
+    Renders the contact page, allowing you to send messages.
+    """
     contact_form = ContactForm(request.POST or None)
     context = {
         'title': "Contact 🍕📞",
@@ -28,13 +39,14 @@ def contact_page(request):
 
     return render(request, "contact.html", context)
 
-from django import forms
-from django.contrib.auth.forms import AuthenticationForm
-from django.views.decorators.http import require_POST
+
 
 
 @require_POST
 def login_in_detailview(request):
+    """
+    Make login and redirect next page.
+    """
     username = request.POST.get('username')
     password = request.POST.get('password')
     next_url = request.POST.get('next', '/')
@@ -51,6 +63,9 @@ def login_in_detailview(request):
 
 
 def login_page(request):
+    """
+    Renders the login page and performs user authentication.
+    """
     form = LoginForm(request.POST or None)
     context = {
         'form': form
@@ -80,6 +95,9 @@ User = get_user_model()
 
 
 def register_page(request):
+    """
+    Renders the registration page and creates a new user account.
+    """
     form = RegisterForm(request.POST or None)
     context = {
         'form': form
@@ -88,32 +106,16 @@ def register_page(request):
         username = form.cleaned_data.get('username')
         email = form.cleaned_data.get('email')
         password = form.cleaned_data.get('password')
+        new_user = User.objects.create_user(username, email, password)
 
-        try:
+        print(new_user)
 
-            new_user = User.objects.create_user(username, email, password)
-            messages.success(request, 'Account created successfully. Please login.')
-            print(new_user)
-            return redirect('login_page')                  
-                
-               
-
-        except Exception as e:
-            messages.error(request, f"Error creating user: {e}")
-            print(f"Error creating user: {e}")           
-            
-       
-
-        return render(request, "auth/register.html", context)
-
-        
+    return render(request, "auth/register.html", context)
 
 
 def logout_page(request):
+    """
+    Realiza o logout do usuário e redireciona para a página de login.
+    """
     logout(request)
     return redirect('login')
-
-
-
-
-
