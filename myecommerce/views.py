@@ -94,6 +94,9 @@ def login_page(request):
 User = get_user_model()
 
 def register_page(request):
+    """
+    Renders register page and create new user account.
+    """
     form = RegisterForm(request.POST or None)
     context = {
         'form': form
