@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, get_user_model, logout
 from .forms import ContactForm, LoginForm, RegisterForm
 from shop.models import Product
 from django.contrib import messages
+from django.contrib.auth.views import LoginView
 
 
 
@@ -26,6 +27,27 @@ def contact_page(request):
         print(request.POST)
 
     return render(request, "contact.html", context)
+
+from django import forms
+from django.contrib.auth.forms import AuthenticationForm
+from django.views.decorators.http import require_POST
+
+
+@require_POST
+def login_in_detailview(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    next_url = request.POST.get('next', '/')
+
+    user = authenticate(request, username=username, password=password)
+
+    if user is not None:
+        login(request, user)
+        messages.success(request, 'Login bem-sucedido.')
+        return redirect(next_url)
+    else:
+        messages.error(request, 'Credenciais inválidas.')
+        return redirect('login')
 
 
 def login_page(request):
