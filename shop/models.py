@@ -65,8 +65,7 @@ class CartItem(models.Model):
 
 
 class Address(models.Model):
-    user = models.ForeignKey(User,
-                             on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     street_address = models.CharField(max_length=100)
     apartment_address = models.CharField(max_length=100)
     country = CountryField(multiple=False)
@@ -78,7 +77,23 @@ class Address(models.Model):
         return self.user.username
 
     class Meta:
-        verbose_name_plural = 'Addresses'        
+        verbose_name_plural = 'Addresses'
+
+
+class Payment(models.Model):
+
+    """
+    Class payment
+
+    """
+    stripe_charge_id = models.CharField(max_length=50)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
+    amount = models.FloatField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username
+
     
 class Order(models.Model):
     # Usuario que fez o pedido
@@ -92,3 +107,5 @@ class Order(models.Model):
 
     def __str__(self):
         return f'Order - {self.user.username} - {self.order_date}'
+
+        
