@@ -96,6 +96,22 @@ class Payment(models.Model):
 
     
 class Order(models.Model):
-    
+    # Usuario que fez o pedido
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # Itens do pedido
+    items = models.ManyToManyField(CartItem)
+    # Preço  total de pedido
+    total_price = models.DecimalField(max_digits=8, decimal_places=2)
+    # Hora e data em que o pedido foi feito
+    order_date = models.DateTimeField(auto_now_add=True)
+    ordered = models.BooleanField(default=False)
+    shipping_address = models.ForeignKey(
+        'Address', related_name='shipping_address', on_delete=models.SET_NULL, blank=True, null=True)
+    billing_address = models.ForeignKey(
+        'Address', related_name='billing_address', on_delete=models.SET_NULL, blank=True, null=True)
+    payment = models.ForeignKey(
+        Payment, on_delete=models.SET_NULL, blank=True, null=True)
+   
 
-
+    def __str__(self):
+        return f'Order - {self.user.username} - {self.order_date}'
