@@ -112,16 +112,15 @@ def register_page(request):
             return render(request, "auth/register.html", context)
 
         new_user = User.objects.create_user(username, email, password)
-
         # Autenticar e fazer login no usuário após o registro bem-sucedido
         user = authenticate(request, username=username, password=password)
         login(request, user)
 
         messages.success(request, 'User account created successfully.')
-
         # Redirecionar para a página desejada após o registro
-        return redirect('/')  
 
+        return redirect('/')  
+        
     return render(request, "auth/register.html", context)
 
 

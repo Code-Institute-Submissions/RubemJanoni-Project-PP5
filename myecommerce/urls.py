@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from django.urls import path, include
 from .views import home_page, about_page, contact_page, register_page, login_page, logout_page
