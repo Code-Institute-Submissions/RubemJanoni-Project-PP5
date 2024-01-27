@@ -117,8 +117,10 @@ def register_page(request):
         user = authenticate(request, username=username, password=password)
         login(request, user)
 
+        messages.success(request, 'User account created successfully.')
+
         # Redirecionar para a página desejada após o registro
-        return redirect('página_de_redirecionamento')  # Substitua 'página_de_redirecionamento' pelo nome da sua view ou URL
+        return redirect('/')  # Substitua 'página_de_redirecionamento' pelo nome da sua view ou URL
 
     return render(request, "auth/register.html", context)
 
