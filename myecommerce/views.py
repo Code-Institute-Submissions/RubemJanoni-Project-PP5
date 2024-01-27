@@ -93,11 +93,7 @@ def login_page(request):
 
 User = get_user_model()
 
-
 def register_page(request):
-    """
-    Renders the registration page and creates a new user account.
-    """
     form = RegisterForm(request.POST or None)
     context = {
         'form': form
@@ -106,11 +102,24 @@ def register_page(request):
         username = form.cleaned_data.get('username')
         email = form.cleaned_data.get('email')
         password = form.cleaned_data.get('password')
+        password2 = form.cleaned_data.get('password2')
+
+        if password != password2:
+            form.add_error('password2', 'Passwords do not match.')
+            return render(request, "auth/register.html", context)
+
         new_user = User.objects.create_user(username, email, password)
 
-        print(new_user)
+        # Autenticar e fazer login no usuário após o registro bem-sucedido
+        user = authenticate(request, username=username, password=password)
+        login(request, user)
+
+        # Redirecionar para a página desejada após o registro
+        return redirect('página_de_redirecionamento')  # Substitua 'página_de_redirecionamento' pelo nome da sua view ou URL
 
     return render(request, "auth/register.html", context)
+
+
 
 
 def logout_page(request):
