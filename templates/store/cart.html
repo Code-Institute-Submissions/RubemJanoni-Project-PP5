@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% load static %}
 
 {% block container %}
-<div class="cart-container w-50 m-auto p-4  bg-light" style="margin-top: 10rem!important;">
+<div class="cart-container w-50 m-auto p-2  bg-light" style="margin-top: 10rem!important;">
     <h2>Check Out</h2>
     {% if cart_items %}
         <ul>
@@ -15,15 +15,17 @@
                     </div>
                     <div class='col-5'>
                         {{ item.quantity }} units of {{ item.product.name }} - ${{ item.product.price|floatformat:2 }} per unit
-                    </div>
-                    
-                    
+                    </div> 
                 </li>
             {% endfor %}
         </ul>
     {% else %}
     <p class="text-center">Your cart is empty. <a href="{% url 'home' %}">Browse our products</a>.</p>
     {% endif %}
+    <div class='row'>
+        <a href="{% url 'home' %}" class='col-3 btn btn-sm btn-secondary w-25 m-auto d-block'><i class="fa-solid fa-chevron-right fa-rotate-180"></i><i class="fa-solid fa-chevron-right fa-rotate-180"></i> Back to home </a>
+        <a href="{% url 'order_create' %}" class='col-3 btn btn-sm btn-primary w-25 m-auto d-block'>To Buy <i class="fa-solid fa-cart-shopping"></i></a>
+    </div>
 
 </div>
 
