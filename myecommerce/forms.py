@@ -75,6 +75,7 @@ class RegisterForm(forms.Form):
         return email
 
     def clean_password(self):
+        data = self.cleaned_data
         password = self.cleaned_data.get('password')
         password2 = self.cleaned_data.get('password2')
         if password != password2:
