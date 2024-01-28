@@ -6,7 +6,7 @@ from shop.models import Product
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.views.decorators.http import require_POST
 
 
@@ -94,33 +94,20 @@ def login_page(request):
 User = get_user_model()
 
 def register_page(request):
-    form = RegisterForm(request.POST or None)
-    context = {
-        'form': form
-    }
+    form = UserCreationForm(request.POST or None)
+    context = {'form': form}
+
     if form.is_valid():
-        username = form.cleaned_data.get('username')
-        email = form.cleaned_data.get('email')
-        password = form.cleaned_data.get('password')
+        form.save()
 
-        try:
+        # Autenticar e fazer login no usuário após o registro bem-sucedido
+        user = authenticate(request, username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
+        login(request, user)
 
-            new_user = User.objects.create_user(username, email, password)
-            messages.success(request, 'Account created successfully. Please login.')
-            print(new_user)
-            return redirect('login_page')                  
-                
-               
+        messages.success(request, 'User account created successfully. Please login.')
+        return redirect('login_page')
 
-        except Exception as e:
-            messages.error(request, f"Error creating user: {e}")
-            print(f"Error creating user: {e}")           
-            
-       
-
-        return render(request, "auth/register.html", context)
-
-
+    return render(request, "auth/register.html", context)
 
 
 def logout_page(request):
