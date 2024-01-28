@@ -110,7 +110,11 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
-ACCOUNT_FORMS = {'signup': 'shop.forms.CustomSignupForm',}
+ACCOUNT_FORMS = {
+    'signup': 'seuapp.forms.CustomSignupForm',
+}
+
+
 
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
