@@ -39,7 +39,7 @@ class LoginForm(forms.Form):
     )
 
 
-class RegisterForm(UserCreationForm):
+class RegisterForm(forms.Form):
     username = forms.CharField(
         widget=forms.TextInput(attrs={
             'class': 'form-control',
@@ -79,6 +79,7 @@ class RegisterForm(UserCreationForm):
         data = self.cleaned_data
         password1 = self.cleaned_data.get('password')
         password2 = self.cleaned_data.get('password2')
+        print(f'password1: {password1}, password2: {password2}')
         if password1 != password2:
             raise forms.ValidationError("The passwords do not match.")
         return data

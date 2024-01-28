@@ -96,6 +96,7 @@ User = get_user_model()
 def register_page(request):
     form = RegisterForm(request.POST or None)
     context = {'form': form}
+    print(request.POST)
 
     try:
         if form.is_valid():
@@ -114,12 +115,15 @@ def register_page(request):
             
             # Redirect to the home page or any other desired page
             return redirect('home')  # Change 'home' to the name of your home page view
+        else: 
+            print(form.errors)
 
     except Exception as e:
         messages.error(request, f"Error creating user: {e}")
         print(f"Error creating user: {e}")
 
     return render(request, "auth/register.html", context)
+    print(form.errors)
 
 
 def logout_page(request):
