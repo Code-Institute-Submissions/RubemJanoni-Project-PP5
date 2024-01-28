@@ -95,17 +95,16 @@ User = get_user_model()
 
 def register_page(request):
     form = RegisterForm(request.POST or None)
-    context = {'form': form}
-
+    context = {
+        'form': form
+    }
     if form.is_valid():
-        form.save()
+        username = form.cleaned_data.get('username')
+        email = form.cleaned_data.get('email')
+        password = form.cleaned_data.get('password')
+        new_user = User.objects.create_user(username, email, password)
 
-        # Autenticar e fazer login no usuário após o registro bem-sucedido
-        user = authenticate(request, username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
-        login(request, user)
-
-        messages.success(request, 'User account created successfully. Please login.')
-        return redirect('login_page')
+        print(new_user)
 
     return render(request, "auth/register.html", context)
 
