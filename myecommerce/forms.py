@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-
+from allauth.account.forms import SignupForm
 
 class ContactForm(forms.Form):
     email = forms.CharField(
@@ -39,7 +39,7 @@ class LoginForm(forms.Form):
     )
 
 
-class RegisterForm(forms.Form):
+class CustomSignupForm(SignupForm):
     username = forms.CharField(
         widget=forms.TextInput(attrs={
             'class': 'form-control',
