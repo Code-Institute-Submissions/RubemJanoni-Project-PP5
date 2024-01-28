@@ -93,37 +93,7 @@ def login_page(request):
 
 User = get_user_model()
 
-def register_page(request):
-    form = RegisterForm(request.POST or None)
-    context = {'form': form}
-    print(request.POST)
 
-    try:
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            email = form.cleaned_data.get('email')
-            password = form.cleaned_data.get('password')
-
-            # Create a new user
-            new_user = User.objects.create_user(username, email, password)
-
-            # Authenticate and login the user
-            user = authenticate(request, username=username, password=password)
-            login(request, user)
-
-            messages.success(request, 'User account created successfully. Please login.')
-            
-            # Redirect to the home page or any other desired page
-            return redirect('home')  # Change 'home' to the name of your home page view
-        else: 
-            print(form.errors)
-
-    except Exception as e:
-        messages.error(request, f"Error creating user: {e}")
-        print(f"Error creating user: {e}")
-
-    return render(request, "auth/register.html", context)
-    print(form.errors)
 
 
 def logout_page(request):
