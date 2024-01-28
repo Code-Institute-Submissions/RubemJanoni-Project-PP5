@@ -39,7 +39,7 @@ class LoginForm(forms.Form):
     )
 
 
-class RegisterForm(forms.Form):
+class RegisterForm(UserCreationForm):
     username = forms.CharField(
         widget=forms.TextInput(attrs={
             'class': 'form-control',
