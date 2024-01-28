@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, get_user_model, logout
-from .forms import ContactForm, LoginForm, CustomSignupForm
+from .forms import ContactForm, LoginForm
 from shop.models import Product
 from django.contrib import messages
 from django.contrib.auth.views import LoginView

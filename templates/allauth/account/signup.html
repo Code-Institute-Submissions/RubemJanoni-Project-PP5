@@ -10,6 +10,7 @@
 <div class="container dflex justify-content-center align-items-center mt-5 p-4">
     <form action="{% url 'account_signup' %}" method="POST" class="col-12 col-md-6 col-lg-4 col-sm-3 mx-auto shadow-sm rounded mt-2 mb-2 p-4" style="background-color: rgba(0, 0, 0, 0.5); max-width: 400px;">
         {% csrf_token %}
+        
         <div>
             <h3 class="m-1 text-white"> Enjoy the taste of the best pizza! 🍕</h3>
             <p class="text-white">By signing up on our website, you get exclusive access to special offers and amazing releases.</p>
@@ -37,18 +38,23 @@
             </div>
         {% endif %}
 
-        <div class="form-control-sm p-0">
-            {{ form.email }}      
+        <div class="form-group">
+            <label for="{{ form.username.id_for_label }}" class="text-white">Username</label>
+            {{ form.username }}
         </div>
-        <div class="form-control-sm p-0">
-            {{ form.username }}            
+        <div class="form-group">
+            <label for="{{ form.email.id_for_label }}" class="text-white">Email</label>
+            {{ form.email }}
         </div>
-        <div class="form-control-sm p-0">
-            {{ form.password }}            
+        <div class="form-group">
+            <label for="{{ form.password1.id_for_label }}" class="text-white">Password</label>
+            {{ form.password1 }}
         </div>
-        <div class="form-control-sm p-0 mb-2">
-            {{ form.password2 }}            
+        <div class="form-group">
+            <label for="{{ form.password2.id_for_label }}" class="text-white">Confirm Password</label>
+            {{ form.password2 }}
         </div>
+        
         <button class="btn btn-primary btn-sm w-100 py-2" type="submit">Create user</button>
     </form>
 </div>
