@@ -1,40 +1,335 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>{% block head_title %}{% endblock %}</title>
-    {% block extra_head %}
-    {% endblock %}
-  </head>
-  <body>
-    {% block body %}
 
-    {% if messages %}
-    <div>
-      <strong>Messages:</strong>
-      <ul>
-        {% for message in messages %}
-        <li>{{message}}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endif %}
+<html lang="en">
 
-    <div>
-      <strong>Menu:</strong>
-      <ul>
-        {% if user.is_authenticated %}
-        <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
-        <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
-        {% else %}
-        <li><a href="{% url 'account_login' %}">Sign In</a></li>
-        <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
-        {% endif %}
-      </ul>
-    </div>
-    {% block content %}
-    {% endblock %}
-    {% endblock %}
-    {% block extra_body %}
-    {% endblock %}
-  </body>
+<head>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Artisan pizzeria with selected ingredients, authentic Italian dough.">
+    <meta name="keywords" content="authentic italian dough,pizza,artisan pizza,food delivery,delivery,pizza delivery,pizza near me,fast food">
+    <title>La MAMMA Pizza</title>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/5f4ac75723.js" crossorigin="anonymous"></script>
+    
+    <!-- Temporary additions -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    
+    
+    <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+    
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon" />
+    <!-- <link href="{% static 'bootstrap-5.2.3-examples/assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap-5.2.3-examples/navbars/navbar.css' %}" rel="stylesheet"> -->
+
+
+    
+    <style>
+
+        .bd-placeholder-img
+        {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none; 
+        }
+
+
+
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+    
+
+    body
+    {
+        background-image: url("{% static 'images/fundo-toalha10b.jpg' %}");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        
+    }
+
+    .h2
+    {
+        color: whitesmoke;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+
+    }
+
+
+    .navbar-custom
+    {
+        background-color:rgb(182, 30, 30);
+        
+    }
+
+    
+
+    .contact-form {
+        width: 300px;
+        margin: auto;
+    }
+
+
+    .nav-link
+    {
+        color: whitesmoke;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    }
+
+
+    .text-white-shadow 
+    {
+        color: white;            
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        
+    }
+
+
+
+        
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+
+    .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+    }
+
+    .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+    }
+
+    .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+    }
+
+    .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+    }
+
+    .bd-mode-toggle {
+        z-index: 1500;
+    }
+
+    .bd-mode-toggle .dropdown-menu .active .bi {
+        display: block !important;
+    }
+
+    #my-alert
+    {
+        margin: 0 auto;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    </style>
+
+    
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary rounded bg-secondary mb-0 p-0 fixed-top"
+            aria-label="navbar pizzaria">
+            <div class="container-fluid navbar-custom">
+                <a class="navbar-brand d-flex align-items-center p-2" style="margin-right:5rem ;" href="{% url 'home' %}">
+                    <i class="fa-solid fa-pizza-slice" style="color: rgb(223, 223, 22);"></i>
+                    <h2 class="h2">&nbsp;&nbsp;La Mamma Pizza</h2>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09"
+                    aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <div class="collapse navbar-collapse" id="navbarsExample">
+                    <ul class="navbar-nav d-flex justify-content-center align-items-center me-auto mb-2 mb-lg-0 row w-100">
+                        <li class="nav-item col text-center">
+                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item col text-center">
+                            <a class="nav-link" href="{% url 'about' %}">About</a>
+                        </li>
+                        <li class="nav-item col dropdown">
+                            <a class="nav-link text-center" href="#" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Menu</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'home' %}">Pizzas</a></li>
+                                <li><a class="dropdown-item" href="{% url 'home' %}">Pasta</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item col text-center">
+                            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                        </li>
+                        <li class="nav-item col dropdown">
+                            <a class="text-black nav-link" href="#" id="user-options" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <div class="text-center">
+                                    <div><i class="fas fa-user fa-lg"></i></div>
+                                    <p class="my-0">My Account</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                                {% if request.user.is_authenticated %}
+                                {% if request.user.is_superuser %}
+                                <a href="" class="dropdown-item">Product Management</a>
+                                {% endif %}
+        
+                                <a href="" class="dropdown-item">My Profile</a>
+                                <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                                {% else %}
+                                <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                                <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                                {% endif %}
+        
+                            </div>
+                        </li>
+                        <li class="nav-item col">
+                            <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
+                                href="{% url 'cart' %}">
+                                <div class="text-center">
+                                    <div><i class="fas fa-shopping-bag fa-lg text-light"></i></div>
+                                    <p class="my-0 text-light">Check Out
+                                        ${{ request.session.cart_total|default:0.00 }}</p>
+                                    <p class='text-light'>0{{ request.session.cart_items|default:0 }} Items in <i class="fa-solid fa-cart-shopping text-light"></i></p>
+                                </div>
+                            </a>
+                        </li>
+        
+                    </ul>
+        
+                </div>
+        
+            </div>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% if messages %}
+            <div class="alert alert-success" role="alert" id="my-alert">
+                <ul class="messages list-unstyled alert-success">
+                    {% for message in messages %}
+                    <li><strong>{{ message }}</strong></li>
+                    {% endfor %}
+                </ul>
+            </div>  
+                
+            {% endif %}
+        </nav>
+
+
+
+    </header>
+
+    
+
+
+
+
+    
+
+
+
+
+
+
+
+
+    {% block container %} {% endblock container %}
+
+    <footer class="bg-dark text-light fixed-bottom">
+        <div class="container d-flex justify-content-center">
+            <div class="row d-flex justify-content-between align-items-center">
+                <div class="col-8 text-center">
+                    <p class="mt-0 mb-0">Follow Us</p>
+                </div>
+                <div class="col-8 text-center">
+                    <a href="#" class="text-light me-2" style="text-decoration: none" rel="noopener">
+                        <i class="fa-brands fa-facebook fa-sm" style="color: #fff"></i>
+                    </a>
+                    <a href="#" class="text-light me-2" style="text-decoration: none" rel="noopener">
+                        <i class="fa-brands fa-twitter fa-sm" style="color: #fff"></i>
+                    </a>
+                    <a href="#" class="text-light me-2" style="text-decoration: none" rel="noopener">
+                        <i class="fa-brands fa-instagram fa-sm" style="color: #fff"></i>
+                    </a>
+                    <a href="#" class="text-light me-2" style="text-decoration: none" rel="noopener">
+                        <i class="fa-brands fa-linkedin fa-sm" style="color: #fff"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>        
+        setTimeout(function () {
+            document.getElementById('my-alert').style.display = 'none';
+        }, 10000);
+    </script>
+    <!-- <script src="{% static 'bootstrap/assets/dist/js/bootstrap.bundle.min.js' %}"></script> -->
+</body>
+
 </html>
