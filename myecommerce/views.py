@@ -94,7 +94,7 @@ def login_page(request):
 User = get_user_model()
 
 def register_page(request):
-    form = UserCreationForm(request.POST or None)
+    form = RegisterForm(request.POST or None)
     context = {'form': form}
 
     if form.is_valid():
