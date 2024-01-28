@@ -82,4 +82,4 @@ class CustomSignupForm(SignupForm):
         print(f'password1: {password1}, password2: {password2}')
         if password1 != password2:
             raise forms.ValidationError("The passwords do not match.")
-        return data
+        return password
