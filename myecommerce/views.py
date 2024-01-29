@@ -1,33 +1,22 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, get_user_model, logout
-from .forms import ContactForm, LoginForm
+from .forms import ContactForm, LoginForm, RegisterForm
 from shop.models import Product
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
-from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.views.decorators.http import require_POST
+
 
 
 def home_page(request):
-    """
-    render homepage displaying all products
-    """
     return render(request, "home.html", {'product':Product.objects.all()})
 
 
 def about_page(request):
-    """
-    render about page displaying all products
-    """
     return render(request, "about.html")
 
 
 def contact_page(request):
-    """
-    Renders the contact page, allowing you to send messages.
-    """
     contact_form = ContactForm(request.POST or None)
     context = {
         'title': "Contact 🍕📞",
@@ -39,14 +28,13 @@ def contact_page(request):
 
     return render(request, "contact.html", context)
 
-
+from django import forms
+from django.contrib.auth.forms import AuthenticationForm
+from django.views.decorators.http import require_POST
 
 
 @require_POST
 def login_in_detailview(request):
-    """
-    Make login and redirect next page.
-    """
     username = request.POST.get('username')
     password = request.POST.get('password')
     next_url = request.POST.get('next', '/')
@@ -55,17 +43,14 @@ def login_in_detailview(request):
 
     if user is not None:
         login(request, user)
-        messages.success(request, 'Login bem-sucedido.')
+        messages.success(self.request, 'Login bem-sucedido.')
         return redirect(next_url)
     else:
-        messages.error(request, 'Credenciais inválidas.')
+        messages.error(self.request, 'Credenciais inválidas.')
         return redirect('login')
 
 
 def login_page(request):
-    """
-    Renders the login page and performs user authentication.
-    """
     form = LoginForm(request.POST or None)
     context = {
         'form': form
@@ -84,6 +69,8 @@ def login_page(request):
             login(request, user)
             print('Valid login')
             print(request.user.is_authenticated)
+            
+            messages.success(request, 'Login bem-sucedido.')
             return redirect('/')
 
         else:
@@ -93,12 +80,110 @@ def login_page(request):
 
 User = get_user_model()
 
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.list import ListView
+from .forms import AddressForm 
+from shop.models import Address
+from django.urls import reverse_lazy
+
+class RegisterView(CreateView):
+    model = User
+    form_class = UserCreationForm
+    template_name = 'auth/register.html'  # Substitua com o seu template
+    success_url = reverse_lazy('home')  # Substitua com a sua URL de sucesso
+
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'Account created successfully. Please login.')
+        return response
+
+    def dispatch(self, request, *args, **kwargs):
+        # Redireciona usuários já autenticados para a página inicial
+        if self.request.user.is_authenticated:
+            return redirect('home')
+        return super().dispatch(request, *args, **kwargs)
 
 
 
 def logout_page(request):
-    """
-    Realiza o logout do usuário e redireciona para a página de login.
-    """
     logout(request)
+    messages.success(request, 'Logged out successfully.')
     return redirect('login')
+
+# INFO USER
+from django.views.generic.detail import DetailView
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
+from shop.models import  Address
+
+class UserProfileView(DetailView):
+    model = User
+    template_name = 'auth/perfilUser.html'
+    context_object_name = 'user_profile'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        username = self.kwargs.get('username')
+        
+        # Obtenha o usuário
+        user = get_object_or_404(User, username=username)
+        context['user_profile'] = user
+
+        # Obtenha o endereço do usuário (assumindo que há apenas um endereço por usuário)
+        address = Address.objects.filter(user=user).first()
+        context['user_address'] = address
+
+        return context
+
+
+# ADDRESS USER -----------------------------------------------------
+
+class AddressCreateView(CreateView, ListView):
+    model = Address
+    form_class = AddressForm
+    template_name = 'auth/perfilUser.html'
+    success_url = reverse_lazy('address-create')  # Ajuste o nome da URL conforme necessário
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['view_type'] = 'Create'
+        return context
+
+
+
+class AddressUpdateView(UpdateView, ListView):
+    model = Address
+    form_class = AddressForm
+    template_name = 'auth/perfilUser.html'
+    success_url = reverse_lazy('address-update')  # Ajuste o nome da URL conforme necessário
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['view_type'] = 'Update'
+        return context
+
+    
+
+class AddressDeleteView(DeleteView, ListView):
+    model = Address
+    template_name = 'auth/perfilUser.html'
+    success_url = reverse_lazy('address-delete')  # Ajuste o nome da URL conforme necessário
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return self.render_to_response(self.get_context_data())
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['view_type'] = 'Delete'
+        return context
+
+
+
+
+
+
