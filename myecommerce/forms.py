@@ -4,16 +4,16 @@ from shop.models import Address
 
 
 class ContactForm(forms.Form):
-    email = forms.CharField(
+    email = forms.EmailField(
         error_messages={'required': 'This field is mandatory.'},
-        widget=forms.TextInput(attrs={
+        widget=forms.EmailInput(attrs={
             'class': 'form-control',
             'placeholder': 'Email'}),
 
     )
-    name = forms.EmailField(
+    name = forms.CharField(
         error_messages={'required': 'This field is mandatory.'},
-        widget=forms.EmailInput(attrs={
+        widget=forms.TextInput(attrs={
             'class': 'form-control',
             'placeholder': 'Name',
             'required': True})
