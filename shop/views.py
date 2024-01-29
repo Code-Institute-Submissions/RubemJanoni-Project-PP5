@@ -9,7 +9,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView
 from myecommerce.forms import LoginForm
 from django.views.generic.edit import CreateView
-
+from django.urls import reverse_lazy
+from .models import Order, CartItem, Cart
 
 
 class Produto_Detail(DetailView):
@@ -52,6 +53,8 @@ def add_to_cart(request, product_id):
     # Calcula o valor total do carrinho e converte para float antes de armazenar na sessão
     cart_total = round(sum(float(item.product.price) * item.quantity for item in cart_items),3)
     request.session['cart_total'] = cart_total
+    
+    messages.success(request, 'Product added successfully.')
 
     return redirect('home')
 
