@@ -9,8 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView
 from myecommerce.forms import LoginForm
 from django.views.generic.edit import CreateView
-from django.urls import reverse_lazy
-from .models import Order, CartItem, Cart
+
 
 
 class Produto_Detail(DetailView):
