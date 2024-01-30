@@ -5,21 +5,7 @@ from .forms import ContactForm, LoginForm, RegisterForm
 from shop.models import Product
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.views.generic.list import ListView
-from .forms import AddressForm 
-from shop.models import Address
-from django.urls import reverse_lazy
-from django import forms
-from django.contrib.auth.forms import AuthenticationForm
-from django.views.decorators.http import require_POST
-from django.views.generic.detail import DetailView
-from django.shortcuts import get_object_or_404
-from django.contrib.auth.models import User
-from shop.models import  Address
-
+from allauth.account.views import SignupView
 
 
 
@@ -43,6 +29,9 @@ def contact_page(request):
 
     return render(request, "contact.html", context)
 
+from django import forms
+from django.contrib.auth.forms import AuthenticationForm
+from django.views.decorators.http import require_POST
 
 
 @require_POST
@@ -92,13 +81,19 @@ def login_page(request):
 
 User = get_user_model()
 
-
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.list import ListView
+from .forms import AddressForm 
+from shop.models import Address
+from django.urls import reverse_lazy
 
 class RegisterView(CreateView):
     model = User
     form_class = UserCreationForm
-    template_name = 'auth/register.html'  # Substitua com o seu template
-    success_url = reverse_lazy('home')  # Substitua com a sua URL de sucesso
+    template_name = 'auth/register.html'  
+    success_url = reverse_lazy('login')  
 
 
     def form_valid(self, form):
@@ -120,7 +115,10 @@ def logout_page(request):
     return redirect('login')
 
 # INFO USER
-
+from django.views.generic.detail import DetailView
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
+from shop.models import  Address
 
 class UserProfileView(DetailView):
     model = User
@@ -148,7 +146,7 @@ class AddressCreateView(CreateView, ListView):
     model = Address
     form_class = AddressForm
     template_name = 'auth/perfilUser.html'
-    success_url = reverse_lazy('address-create')  # Ajuste o nome da URL conforme necessário
+    success_url = reverse_lazy('address-create')  
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -161,7 +159,7 @@ class AddressUpdateView(UpdateView, ListView):
     model = Address
     form_class = AddressForm
     template_name = 'auth/perfilUser.html'
-    success_url = reverse_lazy('address-update')  # Ajuste o nome da URL conforme necessário
+    success_url = reverse_lazy('address-update')  
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -173,7 +171,7 @@ class AddressUpdateView(UpdateView, ListView):
 class AddressDeleteView(DeleteView, ListView):
     model = Address
     template_name = 'auth/perfilUser.html'
-    success_url = reverse_lazy('address-delete')  # Ajuste o nome da URL conforme necessário
+    success_url = reverse_lazy('address-delete')  
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()

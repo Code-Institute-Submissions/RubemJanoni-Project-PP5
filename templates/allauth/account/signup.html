@@ -1,71 +1,21 @@
 {% extends "account/base.html" %}
-{% load static %}
 
+{% load i18n %}
 
-{% block container %}
+{% block head_title %}{% trans "Signup" %}{% endblock %}
 
+{% block content %}
+<h1>{% trans "Sign Up" %}</h1>
 
+<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+</form>
 
-<div class="container dflex justify-content-center align-items-center mt-5 p-4">
-    <form action="{% url 'account_signup' %}" method="post" class="col-12 col-md-6 col-lg-4 col-sm-3 mx-auto shadow-sm rounded mt-2 mb-2 p-4" style="background-color: rgba(0, 0, 0, 0.5); max-width: 400px;">
-        {% csrf_token %}
-        
-        <div>
-            <h3 class="m-1 text-white"> Enjoy the taste of the best pizza! 🍕</h3>
-            <p class="text-white">By signing up on our website, you get exclusive access to special offers and amazing releases.</p>
-            <p class="text-white">Don't miss this one! Register right now.</p>
-        </div>
-
-        {% if messages %}
-            <div class="alert alert-info">
-                {% for message in messages %}
-                    {{ message }}
-                {% endfor %}
-            </div>
-        {% endif %}
-        
-        
-        <h4 class="mb-2 fw-normal text-white">Please Register</h4>
-
-        {% if form.errors %}
-            <div class="alert alert-danger">
-                {% for field, errors in form.errors.items %}
-                    {% for error in errors %}
-                        {{ error }}
-                    {% endfor %}
-                {% endfor %}
-            </div>
-        {% endif %}
-
-        <div class="form-control-sm p-0">
-            <label for="email" class="text-white"></label>
-            {{ form.email }}            
-        </div>
-        <div class="form-control-sm p-0">
-            <label for="username" class="text-white"></label>
-            {{ form.username }}            
-        </div>
-        <div class="form-control-sm p-0">
-            <label for="password" class="text-white"></label>
-            {{ form.password1 }}            
-        </div>
-        <div class="form-control-sm p-0 mb-2">
-            <label for="password2" class="text-white"></label>
-            {{ form.password2 }}            
-        </div>
-        
-        <button class="btn btn-primary btn-sm w-100 py-2" type="submit">Create user</button>
-    </form>
-</div>
-
-{% endblock container %}
-
-
-
-
-
-
-
-
-
+{% endblock %}
