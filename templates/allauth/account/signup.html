@@ -5,17 +5,59 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
-
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
-
+<div class="container dflex justify-content-center align-items-center mt-5 p-4">
+  <form method="post" class="signup col-12 col-md-6 col-lg-4 col-sm-3 mx-auto shadow-sm rounded p-4" id="signup_form" action="{% url 'account_signup' %}" style="background-color: rgba(0, 0, 0, 0.5); max-width: 400px;">
+      <div>
+          <h3 class="m-1 text-white"> Enjoy the taste of the best pizza! 🍕</h3>
+          <p class="text-white">By signing up on our website, you get exclusive access to special offers and amazing releases.</p>
+          <p class="text-white">Don't miss this one! Register right now.</p>
+      </div>       
+      
+      <h4 class="mb-2 fw-normal text-white">Please Register</h4>
+      {{ form.non_field_errors | safe }}
+      {% csrf_token %}
+      <div class="row g-3">
+          <div class="col-12">
+              <div class="form-floating form-group">
+                  {{ form.email }}
+                  <label for="{{form.login.id_for_label}}">Email</label>
+                  {{ form.email.errors|safe }}
+              </div>
+          </div>
+          <div class="col-12">
+              <div class="form-floating form-group">
+                  {{ form.email2 }}
+                  <label for="{{form.login.id_for_label}}">Email</label>
+                  {{ form.email2.errors|safe }}
+              </div>
+          </div>
+          <div class="col-12">
+              <div class="form-floating form-group my-3">
+                  {{ form.password1 }}
+                  <label for="{{form.password.id_for_label}}">Password</label>
+                  {{ form.password1.errors|safe }}
+              </div>
+          </div>
+          <div class="col-12">
+              <div class="form-floating form-group my-3">
+                  {{ form.password2 }}
+                  <label for="{{form.password.id_for_label}}">Password</label>
+                  {{ form.password2.errors|safe }}
+              </div>
+          </div>
+          <div class="col-12">
+              <div class="form-check">
+                  <label for="{{form.remember.id_for_label}}" class="form-check-label">Remember me</label>
+                  {{ form.remember }}
+              </div>
+          </div>
+          <div class="col-6">
+              {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+              {% endif %}
+              <button class="btn btn-primary w-100 py-3 bg-accent" type="submit">Sign Up</button>
+          </div>
+              
+  </form>
+</div>
 {% endblock %}

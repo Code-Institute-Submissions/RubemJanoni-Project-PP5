@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, get_user_model, logout
-from .forms import ContactForm, LoginForm, RegisterForm
+from .forms import ContactForm, LoginForm
 from shop.models import Product
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
@@ -89,6 +89,7 @@ from .forms import AddressForm
 from shop.models import Address
 from django.urls import reverse_lazy
 
+"""
 class RegisterView(CreateView):
     model = User
     form_class = UserCreationForm
@@ -107,7 +108,7 @@ class RegisterView(CreateView):
             return redirect('home')
         return super().dispatch(request, *args, **kwargs)
 
-
+"""
 
 def logout_page(request):
     logout(request)
