@@ -4,33 +4,41 @@
 
 <div class="container mt-5 p-3">
     <div class="row justify-content-center align-items-center mx-auto mt-4 p-4">            
-        <div class="col-12 col-md-6 col-lg-4 col-sm-3">
-            <h1>User Profile</h1>
-            <p>Username: {{ user_profile.username }}</p>
-            <p>Email: {{ user_profile.email }}</p>
-        
-            <h2>Address</h2>
-            {% if user_address %}
-                <p>Street Address: {{ user_address.street_address }}</p>
-                <p>Apartment Address: {{ user_address.apartment_address }}</p>
-                <p>Country: {{ user_address.country }}</p>
-                <p>Zip: {{ user_address.zip }}</p>
-                <p>Address Type: {{ user_address.address_type }}</p>
-                <p>Default: {{ user_address.default }}</p>
-                <!-- Adicione mais campos conforme necessário -->
-            {% else %}
-                <p>No address found for this user.</p>
-            {% endif %}
-            <a href="{% url 'address-create' %}">Add Address</a>
-            <form action="{% url 'login' %}" method="POST" class="form mb-2 p-3 rounded" style="background-color: rgba(0, 0, 0, 0.5);">
-                {% csrf_token %}
+        <div class="col-12 col-md-6 col-lg-4 col-sm-3 bg-light">
+            <h1 class="h1">User Profile</h1>
+            <hr>
+            <p>Username: <b class="text-capitalize">{{ user_profile.username }}</b></p>
+            <p>Email: <b>{{ user_profile.email }}</b></p>
+            <hr>
+            <div class="border shadow shadow-sm p-2 m-2">
+                <h2 class="h2">Address</h2>
+                {% if user_address %}
+                    <p>Street Address: {{ user_address.street_address }}</p>
+                    <p>Apartment Address: {{ user_address.apartment_address }}</p>
+                    <p>Zip: {{ user_address.zip }}</p>
+                    <p>Address Type: {{ user_address.address_type }}</p>
+                    <p>Default: {{ user_address.default }}</p>
+                    <!-- Adicione mais campos conforme necessário -->
+                {% else %}
+                    <p>No address found for this user.</p>
+                {% endif %}
+                {% if not view_type == 'Create' %}
+                    <a href="{% url 'address-create' %}" class="btn btn-secondary">Add Address</a>
+                    {% else %}
+                    <form action="{% url 'address-create' %}" method="POST" class="form mb-2 p-3 rounded" style="background-color: rgba(0, 0, 0, 0.5);">
+                        {% csrf_token %}
+                        <div class="row my-2">
+                            <div class='form-control bg-transparent p-2'>
+                            {{form.as_div}}
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary btn-sm w-100"><b class='text-uppercase'>{{view_type}} address</b></button>
+                            </div>
+                        </div>
+                    </form> 
+                {% endif %}
                 
-                <div class="row my-2">
-                    <div class="col">
-                        <button type="submit" class="btn btn-primary btn-sm w-100">Sign In</button>
-                    </div>
-                </div>
-            </form>                
+            </div>               
         </div>
     </div>
 </div>
