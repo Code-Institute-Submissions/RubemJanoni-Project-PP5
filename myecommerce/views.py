@@ -1,11 +1,24 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, get_user_model, logout
-from .forms import ContactForm, LoginForm
+from .forms import ContactForm, LoginForm, RegisterForm
 from shop.models import Product
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
-from allauth.account.views import SignupView
+from django import forms
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.views.decorators.http import require_POST
+from django.contrib.auth.models import User
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.list import ListView
+from .forms import AddressForm 
+from shop.models import Address
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+from django.views.generic.detail import DetailView
+from django.shortcuts import get_object_or_404
+
 
 
 
@@ -29,9 +42,7 @@ def contact_page(request):
 
     return render(request, "contact.html", context)
 
-from django import forms
-from django.contrib.auth.forms import AuthenticationForm
-from django.views.decorators.http import require_POST
+
 
 
 @require_POST
@@ -81,20 +92,12 @@ def login_page(request):
 
 User = get_user_model()
 
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.views.generic.list import ListView
-from .forms import AddressForm 
-from shop.models import Address
-from django.urls import reverse_lazy
 
-"""
 class RegisterView(CreateView):
     model = User
     form_class = UserCreationForm
-    template_name = 'auth/register.html'  
-    success_url = reverse_lazy('login')  
+    template_name = 'auth/register.html'  # Substitua com o seu template
+    success_url = reverse_lazy('home')  # Substitua com a sua URL de sucesso
 
 
     def form_valid(self, form):
@@ -108,7 +111,7 @@ class RegisterView(CreateView):
             return redirect('home')
         return super().dispatch(request, *args, **kwargs)
 
-"""
+
 
 def logout_page(request):
     logout(request)
@@ -116,10 +119,6 @@ def logout_page(request):
     return redirect('login')
 
 # INFO USER
-from django.views.generic.detail import DetailView
-from django.shortcuts import get_object_or_404
-from django.contrib.auth.models import User
-from shop.models import  Address
 
 class UserProfileView(DetailView):
     model = User
@@ -128,10 +127,10 @@ class UserProfileView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        username = self.kwargs.get('username')
+        username = self.kwargs.get('pk')
         
         # Obtenha o usuário
-        user = get_object_or_404(User, username=username)
+        user = get_object_or_404(User, pk=username)
         context['user_profile'] = user
 
         # Obtenha o endereço do usuário (assumindo que há apenas um endereço por usuário)
@@ -143,11 +142,15 @@ class UserProfileView(DetailView):
 
 # ADDRESS USER -----------------------------------------------------
 
-class AddressCreateView(CreateView, ListView):
+class AddressCreateView(LoginRequiredMixin,CreateView, ListView):
     model = Address
     form_class = AddressForm
     template_name = 'auth/perfilUser.html'
-    success_url = reverse_lazy('address-create')  
+    success_url = reverse_lazy('user-profile')  # Adjust the URL name as needed
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -160,7 +163,7 @@ class AddressUpdateView(UpdateView, ListView):
     model = Address
     form_class = AddressForm
     template_name = 'auth/perfilUser.html'
-    success_url = reverse_lazy('address-update')  
+    success_url = reverse_lazy('address-update')  # Ajuste o nome da URL conforme necessário
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -172,7 +175,7 @@ class AddressUpdateView(UpdateView, ListView):
 class AddressDeleteView(DeleteView, ListView):
     model = Address
     template_name = 'auth/perfilUser.html'
-    success_url = reverse_lazy('address-delete')  
+    success_url = reverse_lazy('address-delete')  # Ajuste o nome da URL conforme necessário
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
