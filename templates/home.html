@@ -10,7 +10,7 @@
                     <img src="{{ p.image.url  }}" class="card-img-top w-100 p-3" alt="pizza">
                     <div class="card-body text-center">
                         <h6 class="card-title">{{p.name}}</h6>
-                        <p class="card-text">{{p.price}}</p>
+                        <p class="card-text">&euro;{{p.price}}</p>
                         <a href="{% url 'product' p.id %}" class="btn btn-success btn-sm">Visualizar</a>
                     </div>
                 </div>
