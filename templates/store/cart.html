@@ -1,31 +1,33 @@
 {% extends 'base.html' %} {% load static %}
 
 {% block container %}
-<div class="cart-container w-50 m-auto p-2  bg-light" style="margin-top: 10rem!important;">
-    <h2>Check Out</h2>
-    {% if cart_items %}
-        <ul>
-            {% for item in cart_items %}
-                <li class='row'>
-                    <div class="card col-1" style="width: 15rem;background-color: rgba(255, 255, 255, 0.8)">
-                        <img src="{{item.product.image_url}}" class="card-img-top w-100 p-3" alt="pizza">
-                        <div class="card-body text-center">
-                            <h6 class="card-title">{{item.product.name}}</h6>
-                        </div>
-                    </div>
-                    <div class='col-5'>
-                        {{ item.quantity }} units of {{ item.product.name }} - ${{ item.product.price|floatformat:2 }} per unit
-                    </div> 
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-    <p class="text-center">Your cart is empty. <a href="{% url 'home' %}">Browse our products</a>.</p>
-    {% endif %}
-    <div class='row'>
+<div class="cart-container w-75 m-auto p-2  bg-light row-cols-2" style="margin-top: 10rem!important;">
+   
+    
+    <div class='row w-100 border-bottom bg-primary-subtle mt-0 mx-1 shadow shadow-sm'>
+        <h2 class="col-5">Items in Cart</h2>
         <a href="{% url 'home' %}" class='col-3 btn btn-sm btn-secondary w-25 m-auto d-block'><i class="fa-solid fa-chevron-right fa-rotate-180"></i><i class="fa-solid fa-chevron-right fa-rotate-180"></i> Back to home </a>
         <a href="{% url 'order_create' %}" class='col-3 btn btn-sm btn-primary w-25 m-auto d-block'>To Buy <i class="fa-solid fa-cart-shopping"></i></a>
     </div>
+        {% if cart_items %}
+            <ul class="row w-100">
+                {% for item in cart_items %}
+                    <li class='col-5 row m-2 border rounded-2 shadow shadow-sm  '>
+                        <div class="col-4 " style="background-color: rgba(255, 255, 255, 0.8)">
+                            <img src="{{item.product.image.url}}" class="card-img-top p-4 w-100 h-auto col" alt="pizza">
+                        </div>
+                        <div class='col-6'>
+                            <div class="card-body text-center pt-2">
+                                <h6 class="card-title">{{item.product.name}}</h6>
+                                {{ item.quantity }} units of {{ item.product.name }} - ${{ item.product.price|floatformat:2 }} per unit
+                            </div>
+                        </div> 
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+        <p class="text-center">Your cart is empty. <a href="{% url 'home' %}">Browse our products</a>.</p>
+        {% endif %}
 
 </div>
 
