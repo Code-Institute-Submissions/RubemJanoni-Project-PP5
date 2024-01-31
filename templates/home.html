@@ -7,11 +7,11 @@
         {% for p in product  %}
             <div class="col-lg-4 col-md-6 col-sm-12 mt-4 mb-4">
                 <div class="card" style="width: 15rem;background-color: rgba(255, 255, 255, 0.8)">
-                    <img src="{% static 'images/pizza1.png' %}" class="card-img-top w-100 p-3" alt="pizza">
+                    <img src="{{ p.image.url  }}" class="card-img-top w-100 p-3" alt="pizza">
                     <div class="card-body text-center">
                         <h6 class="card-title">{{p.name}}</h6>
                         <p class="card-text">{{p.price}}</p>
-                        <a href="{% url 'product' p.id %}" class="btn btn-success btn-sm">Shop</a>
+                        <a href="{% url 'product' p.id %}" class="btn btn-success btn-sm">Visualizar</a>
                     </div>
                 </div>
             </div>
