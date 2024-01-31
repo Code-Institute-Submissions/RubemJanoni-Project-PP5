@@ -1,18 +1,27 @@
 {% extends 'base.html' %} {% load static %}
 
 {% block container %}
-<div class="cart-container w-50 m-auto p-2  bg-light" style="margin-top: 10rem!important;">
+<div class="cart-container w-50 m-auto p-2  bg-light" style="margin-top: 7rem!important;">
     <h2>Purchase</h2>
     {% if orders %}
         <ul>
             {% for order in orders %}
-                <li>Product: {{ order.product }} | Quantity: {{ order.quantity }}</li>
+                <li class='row row-cols-2 m-2 shadow shadow-sm p-2'>
+                    <div class='col-2 rounded-start-5'>
+                        <img src="{{order.product.image.url}}" alt="" class='w-50'>
+                    </div>
+                    <div class='col pt-3'>{{ order.product }} | Quantity: <b>{{ order.quantity }}</b></div>
+                </li>
             {% endfor %}
-            
         </ul>
-        <div class='m-2'>
-            <p class='p-0 m-0'>total = {{total_items}} itens</p>
-            <p class='p-0 m-0'>preço total = ${{total_price}}</p>
+        <div class='m-4 row row-cols-2 border rounded-5 w-50'>
+            <div class="col-2 text-center p-3 bg-secondary">
+                <i class="fa-solid fa-coins"></i>
+            </div>
+            <div class="col-6">
+                <p class='p-0 m-0'>Total = {{total_items}} itens</p>
+                <p class='p-0 m-0'>Preço total = ${{total_price}}</p>
+            </div>
         </div>
         <form action="" method="post" class='shadow d-block w-75 m-auto p-3'>
             {% csrf_token %}
