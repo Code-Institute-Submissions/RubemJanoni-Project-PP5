@@ -5,41 +5,56 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block container %}
-
-<div class="container dflex justify-content-center align-items-center mt-5 p-4">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">Cadastro</h4>
-                </div>
-                <div class="card-body">
-                    <form method="post" action="{% url 'account_signup' %}">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        
-                        {% if form.errors %}
-                            <div class="alert alert-danger mt-3">
-                                <strong>Oops! Houve um erro:</strong>
-                                <ul>
-                                    {% for field, errors in form.errors.items %}
-                                        {% for error in errors %}
-                                            <li>{{ error }}</li>
-                                        {% endfor %}
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        {% endif %}
-                        
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
-                    </form>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <form method="post" id="signup_form" action="{% url 'account_signup' %}" class="mx-auto shadow-sm w-50 rounded p-4 mt-2" style="background-color: rgba(0, 0, 0, 0.5);">
+        <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal text-white">Sign in</h1>
+        </div>
+        <div>
+            <h3 class="m-1 text-white"> Enjoy the taste of the best pizza! 🍕</h3>
+            <p class="text-white">By signing up on our website, you get exclusive access to special offers and amazing releases.</p>
+            <p class="text-white">Don't miss this one! Register right now.</p>
+        </div>  
+        {{ form.non_field_errors | safe }}
+        {% csrf_token %}
+        <div class="row g-3">
+            <div class="col-12">
+                <div class="form-label">
+                    <label for="{{form.username.id_for_label}}"></label>
+                    {{ form.username }}                    
+                    {{ form.username.errors|safe }}
                 </div>
             </div>
+            <div class="col-12">
+                <div class="form-label">
+                    {{ form.email }}
+                    <label for="{{form.email.id_for_label}}"></label>
+                    {{ form.email.errors|safe }}
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-label">
+                    {{ form.password1 }}
+                    <label for="{{form.password1.id_for_label}}"></label>
+                    {{ form.password1.errors|safe }}
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-label">
+                    {{ form.password2 }}
+                    <label for="{{form.password1.id_for_label}}"></label>
+                    {{ form.password2.errors|safe }}
+                </div>
+            </div>
+            
+            <div class="col-6 text-center">
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <button class="btn btn-primary w-100 py-2 btn btn-sm mx-auto" type="submit">Sign in</button>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
-
-
-
 
 {% endblock container %}
