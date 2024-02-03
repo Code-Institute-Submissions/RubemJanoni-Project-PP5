@@ -1,0 +1,78 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block container %}
+<div class="cart-container m-auto p-5  bg-light " style="margin-top: 10rem!important;">
+  <div class="m-2 shadow w-50 shadow-sm p-5">
+  <h2>Categories</h2>
+  <hr>
+    <nav aria-label="Categories Pagination">
+      <ul class="pagination">
+        {% for page_num in categories.paginator.page_range %}
+          <li class="page-item {% if categories.number == page_num %}active{% endif %}">
+            <a class="page-link" href="?categories_page={{ page_num }}">{{ page_num }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <ul class="list-group">
+      {% for category in categories %}
+        <li class="list-group-item d-flex">
+          <div class="col-8">
+            <a href="{% url 'category-detail' category.pk %}">{{ category.name }}</a>
+          </div>
+          <div class="col">
+            <a class=" btn btn-sm btn-secondary" href="{% url 'category-update' category.pk %}">Update</a>
+          </div>
+          <div  class="col"> 
+            <a class=" btn btn-sm btn-danger" href="{% url 'category-delete' category.pk %}">Delet</a>
+          </div>
+          
+        </li>
+      {% endfor %}
+    </ul>
+    <div>
+      <a href="{% url 'category-create' %}" class="btn btn-primary mt-3">Create New Category</a>
+    </div>
+  </div>
+
+  <!--Products---------------------------------------------->
+  <div class="m-2 shadow shadow-sm p-5">
+    <h2 class="mt-5">Products</h2>
+    <hr>
+        <nav aria-label="Products Pagination">
+          <ul class="pagination">
+            {% for page_num in products.paginator.page_range %}
+              <li class="page-item {% if products.number == page_num %}active{% endif %}">
+                <a class="page-link" href="?products_page={{ page_num }}">{{ page_num }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+    <div class="row">
+      {% for product in products %}
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
+            <div class="card-body">
+              <h5 class="card-title"><a href="{% url 'product-detail' product.pk %}">{{ product.name }}</a></h5>
+              <p class="card-text">{{ product.description }}</p>
+              <p class="card-text">Price: ${{ product.price }}</p>
+
+              <div class="row">
+                <a class=" col btn btn-sm btn-secondary m-1" href="{% url 'product-update'  product.pk %}">Update</a>
+                <a class=" col btn btn-sm btn-danger m-1" href="{% url 'product-delete'  product.pk %}">Delet</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div>
+      <a href="{% url 'product-create' %}" class="btn btn-primary mt-3">Create New Product</a>
+
+    </div>
+
+  </div>
+</div>
+
+{% endblock container %}
