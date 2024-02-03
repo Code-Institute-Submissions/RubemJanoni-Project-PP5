@@ -241,7 +241,7 @@
                             <div class="dropdown-menu border-0" aria-labelledby="user-options">
                                 {% if request.user.is_authenticated %}
                                 {% if request.user.is_superuser %}
-                                <a href="" class="dropdown-item">Product Management</a>
+                                <a href="{% url 'home_management' %}" class="dropdown-item">Product Management</a>
                                 {% endif %}
                                 
                                 <a href="{% url 'user-profile' request.user.id %}" class="dropdown-item"><i class="fa-solid fa-id-card-clip"></i> My Profile</a>
@@ -250,8 +250,8 @@
 
                                 <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
                                 {% else %}
-                                <a href="{% url 'register' %}" class="dropdown-item">Register</a>
-                                <a href="{% url 'login' %}" class="dropdown-item">Login</a>
+                                <a href="{% url 'account_signup' %}" class="dropdown-item">SignUp</a>
+                                <a href="{% url 'login' %}" class="dropdown-item">SignIn</a>
                                 {% endif %}
         
                             </div>
