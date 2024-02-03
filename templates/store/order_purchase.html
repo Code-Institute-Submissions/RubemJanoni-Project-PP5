@@ -23,21 +23,26 @@
                 <p class='p-0 m-0'>Preço total = ${{total_price}}</p>
             </div>
         </div>
-        <form action="" method="post" class='shadow d-block w-75 m-auto p-3'>
+        <form action="" method="post" class='shadow d-block w-75 m-auto p-3 d-flex'>
             {% csrf_token %}
-            <div class='d-flex m-2'>
-                {{form.shipping_address.label_tag}}: &nbsp;
-                {{form.shipping_address}}<i class="fa-solid fa-plus text-primary m-1 mx-2"></i>
+            <div class='col'>
+                <div class='m-2'>
+                    <p>{{form.shipping_address.label_tag}}: </p>
+                        <p>{{form.shipping_address}}</p>
+                </div>
+                <div class='m-2'>
+                    <div>
+                        <p>{{form.billing_address.label_tag}}:</p>
+                        <p>{{form.billing_address}}</p>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-sm btn-success d-block w-50 m-auto mt-2 mb-2">Complete purchase</button>
             </div>
-            <div class='d-flex m-2'>
-                {{form.billing_address.label_tag}}: &nbsp;
-                {{form.billing_address}}<i class="fa-solid fa-plus text-primary m-1 mx-2"></i>
+            <div class='col m-1 p-2'>
+                <h1>Attention<i class="fa-solid fa-exclamation"></i></h1>
+                "If your address is not appearing on the list, go to 'My Profile' and add the address, then return to the cart to proceed with the purchase."
             </div>
-            <div class='d-flex m-2'>
-                {{form.payment.label_tag}}: &nbsp;
-                {{form.payment}}<i class="fa-solid fa-plus text-primary m-1 mx-2"></i>
-            </div>
-            <button type="submit" class="btn btn-sm btn-success d-block w-50 m-auto mt-2 mb-2">Complete purchase</button>
         </form>
     {% else %}
         <p>You have no orders yet.</p>
