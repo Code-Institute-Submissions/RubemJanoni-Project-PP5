@@ -1,18 +1,16 @@
-from django.http import HttpResponse
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, get_user_model, logout
-from .forms import ContactForm, LoginForm, RegisterForm
-from shop.models import Product
+from django.contrib.messages.views import SuccessMessageMixin
+from .forms import ContactForm, LoginForm
+from shop.models import Product, Address, Payment
 from django.contrib import messages
-from django.contrib.auth.views import LoginView
-from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.views.decorators.http import require_POST
+
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.views.generic.list import ListView
 from .forms import AddressForm 
-from shop.models import Address
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -41,8 +39,6 @@ def contact_page(request):
         print(request.POST)
 
     return render(request, "contact.html", context)
-
-
 
 
 @require_POST
@@ -93,7 +89,7 @@ def login_page(request):
 User = get_user_model()
 
 
-class RegisterView(CreateView):
+class RegisterView(CreateView, SuccessMessageMixin):
     model = User
     form_class = UserCreationForm
     template_name = 'auth/register.html'  # Substitua com o seu template
@@ -111,15 +107,13 @@ class RegisterView(CreateView):
             return redirect('home')
         return super().dispatch(request, *args, **kwargs)
 
-
-
 def logout_page(request):
     logout(request)
     messages.success(request, 'Logged out successfully.')
     return redirect('login')
 
-# INFO USER
 
+# INFO USER
 class UserProfileView(DetailView):
     model = User
     template_name = 'auth/perfilUser.html'
@@ -141,15 +135,16 @@ class UserProfileView(DetailView):
 
 
 # ADDRESS USER -----------------------------------------------------
-
-class AddressCreateView(LoginRequiredMixin,CreateView, ListView):
+class AddressCreateView(LoginRequiredMixin,CreateView, SuccessMessageMixin):
     model = Address
     form_class = AddressForm
     template_name = 'auth/perfilUser.html'
-    success_url = reverse_lazy('user-profile')  # Adjust the URL name as needed
-
+    success_message = "Address successfully created."
+    
     def form_valid(self, form):
         form.instance.user = self.request.user
+        user_id = self.request.user.id
+        self.success_url = reverse_lazy('user-profile', kwargs={'pk': user_id})
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -159,36 +154,38 @@ class AddressCreateView(LoginRequiredMixin,CreateView, ListView):
 
 
 
-class AddressUpdateView(UpdateView, ListView):
+class AddressUpdateView(LoginRequiredMixin,UpdateView, SuccessMessageMixin):
     model = Address
     form_class = AddressForm
     template_name = 'auth/perfilUser.html'
     success_url = reverse_lazy('address-update')  # Ajuste o nome da URL conforme necessário
+    success_message = "Address successfully updated."
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['view_type'] = 'Update'
         return context
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        user_id = self.request.user.id
+        self.success_url = reverse_lazy('user-profile', kwargs={'pk': user_id})
+        return super().form_valid(form)
 
     
 
-class AddressDeleteView(DeleteView, ListView):
+class AddressDeleteView(LoginRequiredMixin,DeleteView, SuccessMessageMixin):
     model = Address
     template_name = 'auth/perfilUser.html'
-    success_url = reverse_lazy('address-delete')  # Ajuste o nome da URL conforme necessário
-
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        self.object.delete()
-        return self.render_to_response(self.get_context_data())
-
+    success_message = "Address successfully deleted."
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['view_type'] = 'Delete'
         return context
-
-
-
-
-
-
+    
+    def form_valid(self, form):
+        user_id = self.request.user.id
+        self.success_url = reverse_lazy('user-profile', kwargs={'pk': user_id})
+        return super().form_valid(form)
+    
