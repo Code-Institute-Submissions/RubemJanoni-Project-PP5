@@ -32,7 +32,7 @@ CLOUDINARY_STORAGE = {
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '8000-rubemjanoni-project-pp5-fjeqtzknh7.us2.codeanyapp.com',
@@ -57,6 +57,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'cloudinary',
     'shop',
+
+    #Other
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -67,15 +70,22 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     ]
 
 ROOT_URLCONF = 'myecommerce.urls'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),           
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'templates', 'allauth'),
+            os.path.join(BASE_DIR, 'templates', 'account'),
+            os.path.join(BASE_DIR, 'templates', 'auth'),
+                      
             
             
             ],
