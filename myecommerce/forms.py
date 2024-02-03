@@ -4,16 +4,16 @@ from shop.models import Address
 
 
 class ContactForm(forms.Form):
-    email = forms.EmailField(
+    email = forms.CharField(
         error_messages={'required': 'This field is mandatory.'},
-        widget=forms.EmailInput(attrs={
+        widget=forms.TextInput(attrs={
             'class': 'form-control',
             'placeholder': 'Email'}),
 
     )
-    name = forms.CharField(
+    name = forms.EmailField(
         error_messages={'required': 'This field is mandatory.'},
-        widget=forms.TextInput(attrs={
+        widget=forms.EmailInput(attrs={
             'class': 'form-control',
             'placeholder': 'Name',
             'required': True})
@@ -93,7 +93,20 @@ class RegisterForm(forms.Form):
         return password 
 
 
+# Example AddressForm
+from django import forms
+from shop.models import Address
+from django_countries.fields import CountryField
+
 class AddressForm(forms.ModelForm):
     class Meta:
         model = Address
-        fields = ['user', 'street_address', 'apartment_address', 'country', 'zip', 'address_type', 'default']
+        fields = ['street_address', 'apartment_address',  'zip', 'address_type']
+
+class PaymentForm(forms.ModelForm):
+    class Meta:
+        model = Address
+        fields = ['street_address', 'apartment_address',  'zip', 'address_type']
+
+
+
