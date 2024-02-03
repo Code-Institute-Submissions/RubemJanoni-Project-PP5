@@ -1,22 +1,43 @@
-{% extends 'base.html' %} {% load static %}
+{% extends 'base.html' %} 
+{% load static %}
 
 {% block container %}
 
-<h1>Your Orders</h1>
-    {% if orders %}
-        <ul>
-            {% for order in orders %}
-                <li>Order Date: {{ order.order_date }} | Total Price: {{ order.total_price }}</li>
-                <ul>
-                    {% for item in order.items.all %}
-                        <li>{{ item.quantity }} x {{ item.product.name }} - {{ item.product.price }}</li>
+
+
+    <div class="cart-container w-50 m-auto p-2  bg-light" style="margin-top: 7rem!important;">
+        <h2><i class="fa-solid fa-basket-shopping"></i> My purchases</h2>
+        {% if orders %}
+                <ul class=" w-100">
+                    {% for order in orders %}
+
+                        <li class='row m-2 border rounded-2 shadow shadow-sm  '>
+                            {{order.items.all}}
+                            {% for item in order.items.all  %}
+                            <div class="col-4 " style="background-color: rgba(255, 255, 255, 0.8)">
+                                <img src="{{item.product.image.url}}" class="card-img-top p-4 w-100 h-auto col" alt="pizza">
+                                
+
+                            </div>
+                            {% endfor %}
+                            
+
+                            <div class='col-7'>
+                                <div class="card-body pt-2">
+                                    <h6 class="card-title">{{item.items.name}}</h6>
+                        
+                                    <p class="m-0"><b>Billing address: =</b> {{ order.order_date }}</p>
+                                    <p class="m-0"><b>purchase date =</b> {{ order.billing_address }}</p>
+                                    <p class="m-0"><b>Total value= </b> ${{ order.total_price|floatformat:2 }}</p>
+                                </div>
+                            </div> 
+                        </li>
                     {% endfor %}
                 </ul>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>You have no orders yet.</p>
-    {% endif %}
-
-
+            {% else %}
+            <p class="text-center">Your cart is empty. <a href="{% url 'home' %}">Browse our products</a>.</p>
+            {% endif %}
+        
+    
+    </div>
 {% endblock container %}
