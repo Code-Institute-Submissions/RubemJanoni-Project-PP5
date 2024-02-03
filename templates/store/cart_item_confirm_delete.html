@@ -3,13 +3,13 @@
 {% block container %}
 <div class="cart-container w-75 m-auto p-2  bg-light row-cols-2" style="margin-top: 10rem!important;">
     <div class='w-100 border-bottom bg-primary-subtle mt-0 mx-1 shadow shadow-sm'>
-        <h2 class="fs-3">Delet {{object}} from the cart</h2>
+        <h2 class="fs-3">Delete {{object}} from the cart</h2>
     </div>
     <div class="w-100">
         <form action="" method="post" class="form-control text-center w-100 bg-danger-subtle">
             {% csrf_token %}
             <h3 class="h2 fs-4 ">Are you sure you want to remove this item from the cart?</h3>
-            <button type="submit" class="btn btn-sm btn-danger">Delet {{object}} <i class="fa-solid fa-trash"></i></button>
+            <button type="submit" class="btn btn-sm btn-danger">Delete {{object}} <i class="fa-solid fa-trash"></i></button>
         </form>
     </div>
     
