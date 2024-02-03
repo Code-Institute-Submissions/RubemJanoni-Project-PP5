@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block container %}
+<div class="cart-container w-75 m-auto p-2  bg-light row-cols-2" style="margin-top: 10rem!important;">
+
+  <h2>Delete Category</h2>
+  <p>Are you sure you want to delete the category "{{ category.name }}"?</p>
+  <form method="post" class="form">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="{% url 'category-list' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+
+{% endblock container %}

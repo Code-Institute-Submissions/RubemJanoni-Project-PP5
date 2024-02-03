@@ -10,7 +10,7 @@
                     <div class='col-2 rounded-start-5'>
                         <img src="{{order.product.image.url}}" alt="" class='w-50'>
                     </div>
-                    <div class='col pt-3'>{{ order.product }} | Quantity: <b>{{ order.quantity }}</b></div>
+                    <div class='col pt-3'>{{ order.product }} | Quantity: <b>{{ order.quantity }}</b> | Size: {{ order.size }}</div>
                 </li>
             {% endfor %}
         </ul>

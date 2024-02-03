@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block container %}
+<div class="cart-container w-75 m-auto p-2  bg-light row-cols-2" style="margin-top: 10rem!important;">
+
+  <h2>{% if form.instance.pk %}Update{% else %}Create{% endif %} Category</h2>
+  <form method="post" class="form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>
+
+{% endblock container %}

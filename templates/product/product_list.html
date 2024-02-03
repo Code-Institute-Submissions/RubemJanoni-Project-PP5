@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block container %}
+<div class="cart-container w-75 m-auto p-2  bg-light row-cols-2" style="margin-top: 10rem!important;">
+
+  <h2>Product List</h2>
+  <div class="row">
+    {% for product in products %}
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
+          <div class="card-body">
+            <h5 class="card-title"><a href="{% url 'product-detail' product.pk %}">{{ product.name }}</a></h5>
+            <p class="card-text">{{ product.description }}</p>
+            <p class="card-text">Price: ${{ product.price }}</p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+</div>
+
+{% endblock container %}

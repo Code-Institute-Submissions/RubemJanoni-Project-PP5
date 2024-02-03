@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block container %}
+<div class="cart-container w-75 m-auto p-2  bg-light row-cols-2" style="margin-top: 10rem!important;">
+
+    <h2>Category List</h2>
+    <ul class="list-group">
+      {% for category in categories %}
+        <li class="list-group-item"><a href="{% url 'category-detail' category.pk %}">{{ category.name }}</a></li>
+      {% endfor %}
+    </ul>
+</div>
+
+{% endblock container %}
