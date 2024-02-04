@@ -58,6 +58,7 @@
         background-attachment: fixed;
         margin: 0;
         padding: 0;
+        padding-top: 50px;
         
     }
 
@@ -247,7 +248,7 @@
                                 <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
                                 {% else %}
                                 <a href="{% url 'account_signup' %}" class="dropdown-item">Sign Up</a>
-                                <a href="{% url 'login' %}" class="dropdown-item">Sign In</a>
+                                <a href="{% url 'account_login' %}" class="dropdown-item">Sign In</a>
                                 {% endif %}
         
                             </div>

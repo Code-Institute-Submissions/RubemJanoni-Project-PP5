@@ -5,8 +5,8 @@
 
 {% block container %}
 
-<div class="container col-12 mt-5 p-3">
-    <div class="row justify-content-center align-items-center mx-auto mt-4 p-3">          
+<div class="container col-12 mt-4 p-2">
+    <div class="row justify-content-center align-items-center mx-auto mt-3 p-3">          
         <div class="col-12 col-md-6 col-lg-4 col-sm-3">
             <form action="{% url 'contact' %}" method="POST" class="form mb-2 p-4 rounded" style="background-color: rgba(0, 0, 0, 0.5);">
                 {% csrf_token %}
@@ -37,7 +37,7 @@
                 </div>
                 <div class="row my-2">
                     <div class="col">
-                        <button type="submit" class="btn btn-primary btn-sm w-100">Submit</button>
+                        <button type="submit" class="btn btn-success btn-sm w-100">Submit</button>
                     </div>
                 </div>
             </form>                
