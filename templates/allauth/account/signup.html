@@ -11,9 +11,7 @@
 {% block container %}
 <div class="container d-flex justify-content-center align-items-center vh-100 mt-2 p-2";>
     <form class="signup col-12 col-md-6 col-lg-4 col-sm-3 mx-auto shadow-sm rounded p-3 mt-2" style="background-color: rgba(0, 0, 0, 0.5);" method="post" id="signup_form" action="{% url 'account_signup' %}">
-
-        {% csrf_token %}        
-        {{ form.non_field_errors | safe }}
+        
         <div class="text-center mt-2 mb-2">
             <h1 class="h3 font-weight-normal text-white">Sign Up</h1>
         </div>
@@ -24,39 +22,15 @@
         </div>                
         <div class="row g-3">
             <div class="col-12">
-                <div class="form-control text-white">
-                    <label for="{{form.username.id_for_label}}">Username</label>
-                    {{ form.username }}                    
-                    {{ form.username.errors|safe }}
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="text-white">
-                    <label for="{{form.email.id_for_label}}">Email</label>
-                    {{ form.email }}                    
-                    {{ form.email.errors|safe }}
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="text-white">
-                    <label for="{{form.password1.id_for_label}}">Password</label>
-                    {{ form.password1 }}                    
-                    {{ form.password1.errors|safe }}
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="text-white">
-                    <label for="{{form.password1.id_for_label}}">Confirm Password</label>
-                    {{ form.password2 }}                    
-                    {{ form.password2.errors|safe }}
-                </div>
-            </div>
-            
-            <div class="col-12 text-center">
+                {% csrf_token %}
+                {{ form|crispy }}
+                {{ form.non_field_errors | safe }}                
+            </div>           
+            <div class="col-12 text-center">                
                 {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}
-                <button class="btn btn-primary w-100 py-1 mb-2 btn btn-sm mx-auto" type="submit">Sign Up</button>
+                <button type="submit">{% trans "Sign Up" %}</button>
             </div>
         </div>
         
