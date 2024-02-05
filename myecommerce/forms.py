@@ -1,21 +1,23 @@
 from django import forms
 from django.contrib.auth.models import User
 from shop.models import Address
+from django.core.validators import EmailValidator
 
 
 class ContactForm(forms.Form):
-    email = forms.CharField(
+    name = forms.CharField(
         error_messages={'required': 'This field is mandatory.'},
         widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Email'}),
+            'placeholder': 'Name'}),
 
     )
-    name = forms.EmailField(
+    email = forms.EmailField(
         error_messages={'required': 'This field is mandatory.'},
+        validators=[EmailValidator()],
         widget=forms.EmailInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Name',
+            'placeholder': 'Email address',
             'required': True})
     )
     message = forms.CharField(

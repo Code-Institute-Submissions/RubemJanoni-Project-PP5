@@ -16,6 +16,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.views.generic.detail import DetailView
 from django.shortcuts import get_object_or_404
+from django.core.mail import EmailMessage
+import csv
 
 
 
@@ -35,10 +37,31 @@ def contact_page(request):
         'content': "La MAMMA - The best pizza near you...",
         'form': contact_form
     }
-    if request.method == 'POST':
-        print(request.POST)
 
-    return render(request, "contact.html", context)
+    if request.method == 'POST':
+        form = ContactForm(require_POST)
+        if form.is_valid:
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+
+            EmailMessage(
+               'Contact Form Submission from {}'.format(name),
+               message,
+               'form-response@example.com', # Send from (your website)
+               ['rubemjanoni@gmail.com'], # Send to (your admin email)
+               [],
+               reply_to=[email] # Email from the form to get back to
+           ).send()
+
+            return redirect('contact_success')
+        else:
+            form = ContactForm()
+        return render(request, 'contact.html', {'form': form})   
+
+
+def contact_success(request):
+    return render(request, 'message_success.html')    
 
 
 @require_POST

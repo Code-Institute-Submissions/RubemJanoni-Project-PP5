@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Message sent successfully" %}{% endblock %}
+
+{% block container %}
+
+<div class="container text-white text-center mt-5 p-3 w-50" style="background-color: rgba(0, 0, 0, 0.5);">
+    <h2>Message sent successfully</h2> 
+</div>    
+
+{% endblock container %}
