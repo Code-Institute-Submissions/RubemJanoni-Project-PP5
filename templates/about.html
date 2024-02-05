@@ -4,10 +4,10 @@
 
 {% block container %}
 
-<div class="vh-100 w-90 mx-auto mt-5 p-3 text-center d-flex align-items-center"
+<div class="container-fluid mt-5 p-3 text-center d-flex justify-content-center align-items-center flex-column"
     style="background-color: rgba(0, 0, 0, 0.5);">
 
-    <div class="fs-4 mt-2">
+    <div class="col-12 col-md-8">
         <h2 class="h2 m-2 text-white-shadow text-center">Welcome to La Mamma, <span>the best pizza of the world!</span>
         </h2>
         <p class="fs-6 text-white">"Here each slice tells a tale of passion,
@@ -27,9 +27,53 @@
             creating flavor combinations that pay homage to the past while looking towards the future."</p>
         <h6 class="h3 m-2 text-white-shadow text-center"><span>Come and enjoy the best pizza near you!...</span></h6>
 
-
     </div>
-</div>
+
+    <div class="container mx-auto mt-5 p-3 text-center">
+        <div class="row">
+            <!-- Área do Facebook à esquerda -->
+            <div class="col-12 col-md-6 mt-5">
+                <p class="text-white">Keep up to date with all our lastest offers</p>
+                <a href="https://www.facebook.com/profile.php?id=61556196362714" target="_blank" class="text-white ms-2">
+                    <i class="fab fa-facebook fa-3x"></i> Follow us on Facebook
+                </a>
+            </div>
+            <!-- Bloco do Mailchimp à direita -->
+            <div class="col-12 col-md-6">
+                <div id="mc_embed_signup">
+                <form action="https://herokuapp.us21.list-manage.com/subscribe/post?u=46843f990cb708c4bd8a932db&amp;id=3e03b470c4&amp;f_id=0098e9e6f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+                    <div id="mc_embed_signup_scroll"><h2 class="p-2">Subscribe</h2>
+                        <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+                        <div class="mc-field-group"><label for="mce-EMAIL">Endereço de e-mail <span class="asterisk">*</span></label><input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value=""><span id="mce-EMAIL-HELPERTEXT" class="helper_text"></span></div>
+                    <div id="mce-responses" class="clear foot">
+                        <div class="response" id="mce-error-response" style="display: none;"></div>
+                        <div class="response" id="mce-success-response" style="display: none;"></div>
+                    </div>
+                    <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                        /* real people should not fill this in and expect good things - do not remove this or risk form bot signups */
+                        <input type="text" name="b_46843f990cb708c4bd8a932db_3e03b470c4" tabindex="-1" value="">
+                    </div>
+                        <div class="optionalParent">
+                            <div class="clear foot">
+                                <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe">
+                                <p style="margin: 0px auto;"><a href="http://eepurl.com/iJqydU" title="Mailchimp - email marketing made easy and fun"><span style="display: inline-block; background-color: transparent; border-radius: 4px;"><img class="refferal_badge" src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg" alt="Intuit Mailchimp" style="width: 220px; height: 40px; display: flex; padding: 2px 0px; justify-content: center; align-items: center;"></span></a></p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                </div>             
+
+
+            </div>
+        </div>
+    </div>
+
+
+    
+
+
+
+
 
 
 

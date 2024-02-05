@@ -29,39 +29,45 @@ def home_page(request):
 def about_page(request):
     return render(request, "about.html")
 
+from django.core.mail import EmailMessage
+from django.shortcuts import render, redirect
+from .forms import ContactForm
+
+
+
 
 def contact_page(request):
-    contact_form = ContactForm(request.POST or None)
-    context = {
-        'title': "Contact 🍕📞",
-        'content': "La MAMMA - The best pizza near you...",
-        'form': contact_form
-    }
-
     if request.method == 'POST':
-        form = ContactForm(require_POST)
-        if form.is_valid:
+        form = ContactForm(request.POST)
+        if form.is_valid():
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
 
             EmailMessage(
-               'Contact Form Submission from {}'.format(name),
-               message,
-               'form-response@example.com', # Send from (your website)
-               ['rubemjanoni@gmail.com'], # Send to (your admin email)
-               [],
-               reply_to=[email] # Email from the form to get back to
-           ).send()
+                'Contact Form Submission from {}'.format(name),
+                message,
+                'form-response@example.com',  # Send from (your website)
+                ['rubemjanoni@gmail.com'],  # Send to (your admin email)
+                [],
+                reply_to=[email]  # Email from the form to get back to
+            ).send()
 
-            return redirect('contact_success')
-        else:
-            form = ContactForm()
-        return render(request, 'contact.html', {'form': form})   
+            return redirect('message_success')
+    else:
+        form = ContactForm()
 
+    context = {
+        'title': "Contact 🍕📞",
+        'content': "La MAMMA - The best pizza near you...",
+        'form': form
+    }
+    return render(request, 'contact.html', context)
 
 def contact_success(request):
-    return render(request, 'message_success.html')    
+    return render(request, 'message_success.html')
+
+
 
 
 @require_POST
