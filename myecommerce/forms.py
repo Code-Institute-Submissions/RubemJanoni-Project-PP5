@@ -22,7 +22,8 @@ class ContactForm(forms.Form):
         error_messages={'required': 'This field is mandatory.'},
         widget=forms.Textarea(attrs={
             'class': 'form-control',
-            'placeholder': 'Leave a comment'})
+            'placeholder': 'Leave a comment',
+            'rows': 6, 'style': 'resize: none;'})
     )
 
 
