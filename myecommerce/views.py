@@ -116,7 +116,7 @@ def logout_page(request):
 # INFO USER
 class UserProfileView(DetailView):
     model = User
-    template_name = 'auth/perfilUser.html'
+    template_name = 'management/profile_user.html'
     context_object_name = 'user_profile'
 
     def get_context_data(self, **kwargs):
@@ -138,7 +138,7 @@ class UserProfileView(DetailView):
 class AddressCreateView(LoginRequiredMixin,CreateView, SuccessMessageMixin):
     model = Address
     form_class = AddressForm
-    template_name = 'auth/perfilUser.html'
+    template_name = 'management/profile_user.html'
     success_message = "Address successfully created."
     
     def form_valid(self, form):
@@ -157,8 +157,8 @@ class AddressCreateView(LoginRequiredMixin,CreateView, SuccessMessageMixin):
 class AddressUpdateView(LoginRequiredMixin,UpdateView, SuccessMessageMixin):
     model = Address
     form_class = AddressForm
-    template_name = 'auth/perfilUser.html'
-    success_url = reverse_lazy('address-update')  # Ajuste o nome da URL conforme necessário
+    template_name = 'management/profile_user.html'
+    success_url = reverse_lazy('address-update')  
     success_message = "Address successfully updated."
 
     def get_context_data(self, **kwargs):
@@ -176,7 +176,7 @@ class AddressUpdateView(LoginRequiredMixin,UpdateView, SuccessMessageMixin):
 
 class AddressDeleteView(LoginRequiredMixin,DeleteView, SuccessMessageMixin):
     model = Address
-    template_name = 'auth/perfilUser.html'
+    template_name = 'management/profile_user.html'
     success_message = "Address successfully deleted."
     
     def get_context_data(self, **kwargs):

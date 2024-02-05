@@ -1,0 +1,61 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block container %}
+
+<div class="container mt-5 p-3">
+    <div class="row justify-content-center align-items-center mx-auto mt-4 p-4">            
+        <div class="col-12 col-md-6 col-lg-4 col-sm-3 bg-light">
+            {% if view_type != "Create" and view_type != "Delete" and view_type != "Update" %}
+                <h1 class="h1">User Profile</h1>
+                <hr>
+                <p>Username: <b class="text-capitalize">{{ user_profile.username }}</b></p>
+                <p>Email: <b>{{ user_profile.email }}</b></p>
+                <hr>
+                <div class="border shadow shadow-sm p-2 m-2">
+                    <h2 class="h2">Address</h2>
+                    <hr>
+                    {% if user_address %}
+                        <p>Street Address: {{ user_address.street_address }}</p>
+                        <p>Apartment Address: {{ user_address.apartment_address }}</p>
+                        <p>Zip: {{ user_address.zip }}</p>
+                        <p>Address Type: {{ user_address.address_type }}</p>
+                        <div class="row  m-2">
+                            <a href="{% url 'address-delete' user_address.pk%}" class='btn btn-danger btn-sm col m-1'>Delet Andress</a>
+                            <a href="{% url 'address-update' user_address.pk%}" class='btn btn-primary btn-sm col m-1 '>Update Andress</a></a>
+                        </div>
+                        <!-- Adicione mais campos conforme necessário -->
+                    {% else %}
+                        <p>No address found for this user.</p>
+                    {% endif %}
+                    {% if not user_address %}
+                        <a href="{% url 'address-create' %}" class="btn btn-secondary">Add Address</a>
+                    {% endif %}
+            {% else %}
+                {% if view_type == "Delete" %}
+                    <h1 class="h1">Delete Address</h1>
+                {% elif view_type == "Create" %}
+                    <h1 class="h1">Create Address</h1>
+                {% else %}
+                    <h1 class="h1">Update Address</h1>
+                {% endif %}
+                <form  method="POST" class="form mb-2 p-3 rounded" style="background-color: rgba(0, 0, 0, 0.5);">
+                    {% csrf_token %}
+                    <div class="row my-2">
+                        <div class='form-control bg-transparent p-2'>
+                            {% if view_type == "Delete" %}
+                                <h2 class="h2 fs-6 text-center">Are you sure you want to delete the address "{{object}}"?</h2>
+                            {% endif %}
+                        {{form.as_div}}
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary btn-sm w-100 mt-2"><b class='text-uppercase'>{{view_type}} address</b></button>
+                        </div>
+                    </div>
+                </form> 
+            {% endif %}            
+        </div>
+        
+    </div>
+</div>
+
+{% endblock container %}
