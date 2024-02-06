@@ -14,7 +14,7 @@ urlpatterns = [
     path('contactsuccess/', contact_success, name='message_success'),
     
     path('register/', RegisterView.as_view(), name='register'),
-    #path('register/', register_page, name='register'),
+    # path('register/', register_page, name='register'),
     path('logout/', logout_page, name='logout'),
     path('accounts/', include('allauth.urls')),
 

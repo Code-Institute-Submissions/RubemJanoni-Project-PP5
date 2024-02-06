@@ -15,6 +15,15 @@ from django.core.paginator import Paginator
 
 
 class Produto_Detail(DetailView):
+
+    """
+    View for displaying details of a product.
+
+    - Uses the Product model for data retrieval.
+    - Renders the 'store/detail.html' template.
+    - Provides the 'product' object to the template as context.
+    - Includes a login form for cases where the user is not logged in.
+    """
     model = Product
     template_name = 'store/detail.html'
     context_object_name = 'product'
@@ -29,6 +38,18 @@ class Produto_Detail(DetailView):
 
 @login_required
 def add_to_cart(request, product_id):
+
+    """
+    View for adding a product to the user's shopping cart.
+
+    - Requires user authentication.
+    - Retrieves the product and user's cart.
+    - Processes the selected size and updates the cart accordingly.
+
+    :param request: The HTTP request object.
+    :param product_id: The ID of the product to add to the cart.
+    :return: Redirects to the home page after processing the request.
+    """
     # Verifica se o produto existe, validando com o get_object_or_404
     product = get_object_or_404(Product, id = product_id)
     
@@ -73,6 +94,18 @@ def add_to_cart(request, product_id):
 
 
 class OrderCreateView(LoginRequiredMixin, CreateView):
+
+    """
+    View for creating an order.
+
+    - Requires user authentication.
+    - Uses the Order model for data input.
+    - Renders the 'store/order_purchase.html' template.
+    - Retrieves user's cart items and calculates order details.
+
+    :param request: The HTTP request object.
+    :return: Redirects to the order list page upon successful order creation.
+    """
     model = Order
     template_name = 'store/order_purchase.html'
     fields = ['shipping_address', 'billing_address']
@@ -151,6 +184,18 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
 
 
 class CartView(View):
+
+    """
+    View for displaying the user's shopping cart.
+
+    - Requires user authentication.
+    - Renders the 'store/cart.html' template.
+    - Retrieves and provides cart items to the template as context.
+
+    :param request: The HTTP request object.
+    :return: Renders the 'store/cart.html' template with cart items.
+    """
+    
     template_name = 'store/cart.html'
 
     def get(self, request, *args, **kwargs):

@@ -144,6 +144,12 @@ def logout_page(request):
 
 # INFO USER
 class UserProfileView(DetailView):
+     """
+    View for displaying user profile information.
+
+    - Shows user details.
+    - Retrieves the user's address assuming there is only one address per user.
+    """
     model = User
     template_name = 'management/profile_user.html'
     context_object_name = 'user_profile'
@@ -165,6 +171,13 @@ class UserProfileView(DetailView):
 
 # ADDRESS USER -----------------------------------------------------
 class AddressCreateView(LoginRequiredMixin,CreateView, SuccessMessageMixin):
+    """
+    View for creating a new user address.
+
+    - Requires login.
+    - Uses the AddressForm for data input.
+    - Redirects to the user profile page upon successful creation.
+    """
     model = Address
     form_class = AddressForm
     template_name = 'management/profile_user.html'
@@ -200,10 +213,13 @@ class AddressUpdateView(LoginRequiredMixin,UpdateView, SuccessMessageMixin):
         user_id = self.request.user.id
         self.success_url = reverse_lazy('user-profile', kwargs={'pk': user_id})
         return super().form_valid(form)
-
     
 
-class AddressDeleteView(LoginRequiredMixin,DeleteView, SuccessMessageMixin):
+class AddressDeleteView(LoginRequiredMixin, DeleteView, SuccessMessageMixin):
+
+    """
+    Delete address
+    """
     model = Address
     template_name = 'management/profile_user.html'
     success_message = "Address successfully deleted."
