@@ -103,14 +103,14 @@
         
     }
 
-    #mc_embed_signup 
-    {background:#fff;false;clear:left; 
-    font:14px Helvetica,Arial,sans-serif;
-    width: 400px;}
-
-
-
-        
+    #mc_embed_signup
+    {
+        background:#fff;
+        clear:left; 
+        font:14px Helvetica,Arial,sans-serif;
+        width: 400px;
+    }
+            
 
     @media (min-width: 768px) {
         .bd-placeholder-img-lg {
@@ -189,7 +189,7 @@
         justify-content: center;
         align-items: center;
     }
-    {% block css %} {% endblock css %}
+    
 
     </style>
 
@@ -257,8 +257,8 @@
 
                                 <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
                                 {% else %}
-                                <a href="{% url 'account_signup' %}" class="dropdown-item">Sign Up</a>
-                                <a href="{% url 'account_login' %}" class="dropdown-item">Sign In</a>
+                                <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                                <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
                                 {% endif %}
         
                             </div>

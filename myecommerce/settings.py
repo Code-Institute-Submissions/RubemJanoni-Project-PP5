@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'shop',
 
-    #Other
+    # Other
     'crispy_forms',
 ]
 
@@ -84,12 +84,8 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'templates'),
             os.path.join(BASE_DIR, 'templates', 'allauth'),
             os.path.join(BASE_DIR, 'templates', 'account'),
-            os.path.join(BASE_DIR, 'templates', 'auth'),
-                      
-            
-            
-            ],
-                
+            os.path.join(BASE_DIR, 'templates', 'auth'),],
+              
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -103,26 +99,18 @@ TEMPLATES = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    
-    # Needed to login by username in Django admin, regardless of `allauth`
+       
     'django.contrib.auth.backends.ModelBackend',
-
-    # `allauth` specific authentication methods, such as login by email
     'allauth.account.auth_backends.AuthenticationBackend',
-    
-]
+    ]
 
 SITE_ID = 1
-
-
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
-
-
 
 
 LOGIN_URL = '/accounts/login/'
@@ -136,10 +124,6 @@ WSGI_APPLICATION = 'myecommerce.wsgi.application'
 
 
 DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}
-
-
-
-
 
 
 # Password validation
@@ -192,7 +176,7 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#Email
+# Email
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
