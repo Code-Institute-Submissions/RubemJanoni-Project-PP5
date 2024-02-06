@@ -43,13 +43,15 @@ Simplicity and elegance are key features of the design, ensuring intuitive navig
 In summary, the design of our website pays homage to the rich culinary tradition of Italy, capturing the essence of the country and conveying it to our customers in a captivating and inspiring way.
 
 - The color palette was generated on [Coolors co](https://coolors.co/)
+  
 
   ![Color Palette](static/images/pallete-colors.jpg)
 
 - Background
 
     For the background, an authentic Italian tabletop with kitchen ingredients was used.
-  ![Color Palette](static/images/fundo-toalha10b.jpg)
+  
+  ![Background](static/images/fundo-toalha-pequeno.jpg)
   
 
   
