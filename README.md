@@ -14,7 +14,15 @@ The live link can be found here - [La MAMMA Pizza](https://myecommerce-f6b06812e
 
 ![responsive-site](static/images/responsividade01.jpg)
 
-## Planning
+## Agile Aproach
+
+This project was designed and built using the agile approach. To visualize the different elements of the project, I created a GitHub project and used the provided [Kanban Board](https://github.com/users/RubemJanoni/projects/7) to track the progress of my work. Project elements are assigned to different User Stories that can be opened to view Acceptance Criteria and Tasks to be completed. Additionally, each user story was labeled to indicate the priority and importance of the respective features for the overall functioning and functionality of the site
+
+## UX
+
+### Target Audience
+
+The target audience consists of pizza enthusiasts who appreciate high-quality ingredients and seek the authentic Italian taste delivered to their doorstep
 
 
 
