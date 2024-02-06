@@ -8,7 +8,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView
 from myecommerce.forms import LoginForm
 from django.views.generic import CreateView, DeleteView, UpdateView, ListView
-from django.urls import reverse_lazy
 from .models import Order, CartItem, Cart, Payment, OrderItem, Category, Product
 from django.views.generic import TemplateView
 from django.core.paginator import Paginator
@@ -51,7 +50,7 @@ def add_to_cart(request, product_id):
     :return: Redirects to the home page after processing the request.
     """
     # Verifica se o produto existe, validando com o get_object_or_404
-    product = get_object_or_404(Product, id = product_id)
+    product = get_object_or_404(Product, id=product_id)
     
     # Verifica se o usuário ja tem um carrinho, get_or_create verifica se há algum produto (objeto) no carrinho
     # se não existir ele retorna uma tupla com dois valores: um objeto e um booleano que pode ser True ou False
@@ -66,7 +65,6 @@ def add_to_cart(request, product_id):
             # Verifica se o produto já está no carrinho, note que ele usa a variável cart que foi validade lá encima e também
             # usa a variavel product que validamos com get_list_or_404
             cart_item, item_created = CartItem.objects.get_or_create(cart=cart, product=product )
-
             # Se o item ja existir, aumenta a quantidade: caso contrário, cria um novo item no carrinho
             if not item_created:
                 cart_item.quantity +=1
@@ -207,10 +205,10 @@ class CartView(View):
     
 class CartItemDeleteView(LoginRequiredMixin, DeleteView):
     model = CartItem
-    template_name = 'store/cart_item_confirm_delete.html'  # Crie este template conforme necessário
+    template_name = 'store/cart_item_confirm_delete.html'
 
     def get_success_url(self):
-        return reverse_lazy('cart')  # Substitua pelo nome real da sua URL para o carrinho
+        return reverse_lazy('cart')  
 
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, 'Item removido do carrinho com sucesso!')

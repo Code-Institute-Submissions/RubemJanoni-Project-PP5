@@ -150,6 +150,7 @@ class UserProfileView(DetailView):
     - Shows user details.
     - Retrieves the user's address assuming there is only one address per user.
     """
+
     model = User
     template_name = 'management/profile_user.html'
     context_object_name = 'user_profile'
@@ -234,3 +235,12 @@ class AddressDeleteView(LoginRequiredMixin, DeleteView, SuccessMessageMixin):
         self.success_url = reverse_lazy('user-profile', kwargs={'pk': user_id})
         return super().form_valid(form)
     
+
+# ERRORS
+def handler404(request, exception=None):
+    context = {'error_message': 'Oops! A página que você está procurando não foi encontrada.'}
+    return render(request, '404.html', context, status=404)
+
+def handler500(request, exception=None):
+    context = {'error_message':'Oops! Houve um erro interno no servidor. Tente novamente depois'}
+    return render(request,'500.html', context, status=500)
