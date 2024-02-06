@@ -42,6 +42,10 @@ Simplicity and elegance are key features of the design, ensuring intuitive navig
 
 In summary, the design of our website pays homage to the rich culinary tradition of Italy, capturing the essence of the country and conveying it to our customers in a captivating and inspiring way.
 
+- The color palette was generated on [La MAMMA Pizza](https://coolors.co/)
+
+  
+
 
 
 
