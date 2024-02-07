@@ -97,6 +97,13 @@ In summary, the design of our website pays homage to the rich culinary tradition
   
   ![Background](static/images/fundo-toalha-pequeno.jpg)
 
+## Wireframes
+
+The Balsamiq was used for the layout.
+
+![Wireframe](static/images/balsamiq01.jpg)
+
+
 
 ## Database structure
 
