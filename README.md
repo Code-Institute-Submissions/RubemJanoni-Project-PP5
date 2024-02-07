@@ -42,16 +42,31 @@ Simplicity and elegance are key features of the design, ensuring intuitive navig
 
 In summary, the design of our website pays homage to the rich culinary tradition of Italy, capturing the essence of the country and conveying it to our customers in a captivating and inspiring way.
 
-- The color palette was generated on [Coolors co](https://coolors.co/)
+- The **color palette** was generated on [Coolors co](https://coolors.co/)
   
 
   ![Color Palette](static/images/pallete-colors.jpg)
 
-- Background
+- **Background**
 
-    For the background, an authentic Italian tabletop with kitchen ingredients was used.
+    For the background, an authentic Italian tabletop with kitchen ingredients from **pexels.com** was used.
   
   ![Background](static/images/fundo-toalha-pequeno.jpg)
+
+
+## Database structure
+
+To illustrate my database structure, I used Vision to create an ERD-diagram
+
+For this project, Object-Oriented Programming princiciples and Django's class-based generic views were applied. For the User authentication system, the Allauth library was used. Alongside the models presented in the E-Commerce walkthrough (User, ProfileUser, Product, Order, OrderItem).
+
+## Features
+
+
+  
+
+
+  
   
 
   
