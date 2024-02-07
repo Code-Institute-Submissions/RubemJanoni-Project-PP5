@@ -42,7 +42,7 @@ For this project several Marketing strategies were used which are SEO, Content M
 
 ### Seo
 
-#### Keywords
+- **Keywords**
 
 For the search of suitable keywords for my website I initially used wordtracker.com. Since the free trial only allowed two searches, I used Google search results as primary way of finding suitable keywords. To check the popularity of certain Short-tail and Long-tail keywords, I also checked the 'Related Searches' and 'People also ask' sections on Google. In my search for keywords I aimed at coming up with keywords that have high volume aswell as low competition. I came up with this list of relevant keywords that are most suitable for improving the site's ranking in search engine results, ranking the keywords by the number of search results:
 
@@ -72,7 +72,7 @@ Visitors of the website can find a newsletter signup form in the about page wher
 
 To further enhance the branding, a favicon featuring the Italian flag, representing the company's logo, has been implemented on the website, highlighting its origin in Italian cuisine.
 
-#### Robots.txt / Sitemaps.xml
+### Robots.txt / Sitemaps.xml
 
 To further enhance the website's SEO ranking, a robots.txt and a sitemap.xml file have been created. The robots.txt file informs search engines to avoid certain areas of the website. The sitemap.xml file was created using the xml-sitemaps.com website to provide a comprehensible understanding of the website's structure to search engines. By having a sitemap.xml file, search engines will crawl every important page on the website which enhances indexing.
 
