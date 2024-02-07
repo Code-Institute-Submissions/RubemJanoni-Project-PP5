@@ -117,6 +117,18 @@ For this project, Object-Oriented Programming princiciples and Django's class-ba
 
 As this project was made with the Django framework, every page of the website extends its' content from the base.html file, meaning that the content of the base.html is present in every website page. In the following, those features are presented that are extended from the base.html file.
 
+### Navigation Bar
+
+The responsive navigation bar consists of the La Mamma Pizza logo, the navigation menu, and clickable icons, including links to the 'Home', 'About', 'Menu', 'Contact', 'My Account', and 'Checkout' pages. The La Mamma logo serves as a clickable home button that takes users back to the home page. The 'Menu' link includes the product categories of the site (Pizzas and Pastas). If unauthenticated or logged-out users click on the 'My Account' icon, the dropdown menu will display options for 'Register' and 'Login'.
+
+![Navbar](static/images/lamamma-menu01.jpg)
+
+![Navbar](static/images/lamamma-menu02.jpg)
+
+![Navbar](static/images/lamamma-checkout.jpg)
+
+
+
 
 
 
