@@ -18,7 +18,7 @@ The live link can be found here - [La MAMMA Pizza](https://myecommerce-f6b06812e
 
 This project was designed and built using the agile approach. To visualize the different elements of the project, I created a GitHub project and used the provided [Kanban Board](https://github.com/users/RubemJanoni/projects/7) to track the progress of my work. Project elements are assigned to different User Stories that can be opened to view Acceptance Criteria and Tasks to be completed. Additionally, each user story was labeled to indicate the priority and importance of the respective features for the overall functioning and functionality of the site
 
-# UX
+# User Experience
 
 ### Target Audience
 
@@ -31,6 +31,20 @@ The website owner's objective is to promote their products online, connect with 
 ### Customer's Goal
 
 The customers' goal is to conveniently browse and order their favorite pizzas online and have them delivered to their doorstep.
+
+### Business Model
+
+The business model is B2C (Business to Customer) which means that the business sells to private customers only.
+
+### Marketing Strategies
+
+For this project several Marketing strategies were used which are SEO, Content Marketing, Social Media Marketing and Email Marketing.
+
+### Seo
+
+#### Keywords
+
+- kjkkjkjk
 
 # Design
 
