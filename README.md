@@ -46,7 +46,7 @@ For this project several Marketing strategies were used which are SEO, Content M
 
 For the search of suitable keywords for my website I initially used wordtracker.com. Since the free trial only allowed two searches, I used Google search results as primary way of finding suitable keywords. To check the popularity of certain Short-tail and Long-tail keywords, I also checked the 'Related Searches' and 'People also ask' sections on Google. In my search for keywords I aimed at coming up with keywords that have high volume aswell as low competition. I came up with this list of relevant keywords that are most suitable for improving the site's ranking in search engine results, ranking the keywords by the number of search results:
 
-- authentic italian dough
+- Authentic italian dough
 - Pizza Artisan
 - Pizza
 - Food delivery
@@ -62,11 +62,11 @@ These keywords are listed in the Meta block of the head section in the base.html
 
 For a social media marketing approach, a Facebook Business Page has been created, that represents the business. As the Facebook profile image, an authentic Italian pizza coming out of the oven was used. Also, in this project and on the Facebook profile, images of the Mario Bros character generated in AI were used.
 
-- [Facebook Page](https://www.facebook.com/profile.php?id=61556196362714)
+- ![Facebook Page](https://www.facebook.com/profile.php?id=61556196362714)
 
-  ![Facebook page](static/images/face-lamamma-english.jpg)
+![Facebook page](static/images/face-lamama-english.jpg)
 
-  ![Facebook page](static/images/face-lamamma04.jpg)
+![Facebook page](static/images/face-lamama04.jpg)
 
 
 
