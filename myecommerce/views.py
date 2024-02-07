@@ -235,3 +235,11 @@ class AddressDeleteView(LoginRequiredMixin, DeleteView, SuccessMessageMixin):
         return super().form_valid(form)
     
 
+# ERRORS
+def handler404(request, exception=None):
+    context = {'error_message': 'Oops! The page you are looking for was not found'}
+    return render(request, 'error404.html', context, status=404)
+
+def handler500(request, exception=None):
+    context = {'error_message':'Oops! There was an internal server error. Try again later'}
+    return render(request,'error500.html', context, status=500)
