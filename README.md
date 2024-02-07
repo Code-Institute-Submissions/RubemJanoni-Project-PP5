@@ -298,6 +298,37 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 - In settings.py add
 ALLOWED_HOSTS = ['app-name.herokuapp.com', 'localhost']
 
+## Development
+
+### Clone
+
+Changes made to a cloned repository will affect the original one.
+
+- Navigate to the main page of the repository (this could be a forked instance)
+- Click on the Code dropdown menu above the list of files
+- Choose a method to copy the URL for the repository: either via HTTPS, by using an SSH key, or by using GitHub CLI
+- In your work environment, open Git Bash and change the current directory to the target location for the cloned repository
+- Type git clone followed by the copied URL and press enter Enter
+
+### Download as ZIP
+
+- Log into GitHub and click on the repository to download (RetroResell )
+- Select Code and click "Download Zip" file
+- Once the download is completed, extract the ZIP file and use it in your local environment
+
+## Credits
+
+### Images
+
+- All images were obtained through the website pexels.com or generated using AI.
+
+
+
+
+
+
+
+
 
 
 
