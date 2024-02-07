@@ -329,6 +329,10 @@ Changes made to a cloned repository will affect the original one.
 
 - All images were obtained through the website pexels.com or generated using AI.
 
+## Acknowledgements
+
+I would like to express my gratitude to the Slack community, the tutors and mentors at the Code Institute, and especially to the entire Tutor Assistance team (Roman, John, Sarah) for all the help and support with my countless doubts and deployment issues. Thank You!
+
 
 
 
