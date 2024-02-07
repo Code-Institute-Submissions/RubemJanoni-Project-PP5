@@ -44,7 +44,37 @@ For this project several Marketing strategies were used which are SEO, Content M
 
 #### Keywords
 
-- kjkkjkjk
+For the search of suitable keywords for my website I initially used wordtracker.com. Since the free trial only allowed two searches, I used Google search results as primary way of finding suitable keywords. To check the popularity of certain Short-tail and Long-tail keywords, I also checked the 'Related Searches' and 'People also ask' sections on Google. In my search for keywords I aimed at coming up with keywords that have high volume aswell as low competition. I came up with this list of relevant keywords that are most suitable for improving the site's ranking in search engine results, ranking the keywords by the number of search results:
+
+- authentic italian dough
+- Pizza Artisan
+- Pizza
+- Food delivery
+- Pizza Delivery
+- Delivery
+- Pizza near me
+- Fast food
+
+These keywords are listed in the Meta block of the head section in the base.html to improve the SEO.
+
+
+### Social Media Marketing
+
+For a social media marketing approach, a Facebook Business Page has been created, that represents the business. As the Facebook profile image, an authentic Italian pizza coming out of the oven was used. Also, in this project and on the Facebook profile, images of the Mario Bros character generated in AI were used.
+
+- [Facebook Page](https://www.facebook.com/profile.php?id=61556196362714)
+
+### Email Marketing
+
+Visitors of the website can find a newsletter signup form in the about page where they can fill in their email without any further registration to receive a potential newsletter via email that provides information about sales and new products of the website. The newsletter is handled by MailChimp. For the time being, visitors can enter their email address to signup.
+
+### Favicon
+
+To further enhance the branding, a favicon featuring the Italian flag, representing the company's logo, has been implemented on the website, highlighting its origin in Italian cuisine.
+
+#### Robots.txt / Sitemaps.xml
+
+To further enhance the website's SEO ranking, a robots.txt and a sitemap.xml file have been created. The robots.txt file informs search engines to avoid certain areas of the website. The sitemap.xml file was created using the xml-sitemaps.com website to provide a comprehensible understanding of the website's structure to search engines. By having a sitemap.xml file, search engines will crawl every important page on the website which enhances indexing.
 
 # Design
 
