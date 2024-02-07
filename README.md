@@ -64,6 +64,12 @@ For a social media marketing approach, a Facebook Business Page has been created
 
 - [Facebook Page](https://www.facebook.com/profile.php?id=61556196362714)
 
+  [Facebook page](static/images/face-lammama-english.jpg)
+
+  [Facebook page](static/images/face-lammama04.jpg)
+
+
+
 ### Email Marketing
 
 Visitors of the website can find a newsletter signup form in the about page where they can fill in their email without any further registration to receive a potential newsletter via email that provides information about sales and new products of the website. The newsletter is handled by MailChimp. For the time being, visitors can enter their email address to signup.
