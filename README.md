@@ -170,6 +170,13 @@ On the contact page, a customized frontend form was used, which, along with the 
 ![Contact](static/images/lamamma-contato.jpg)
 
 
+### Shopping Bag
+
+- All products in the store can be easily purchased by clicking the 'Shop' button, which will then add the item to the cart.
+
+![Shop](static/images/lamamma-pizzas.jpg)
+
+
 ### Logout
 
 Upon clicking the 'logout' link, the user receives a personalized message requesting confirmation for the logout.
