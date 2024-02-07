@@ -113,6 +113,12 @@ For this project, Object-Oriented Programming princiciples and Django's class-ba
 
 ## Features
 
+### Base
+
+As this project was made with the Django framework, every page of the website extends its' content from the base.html file, meaning that the content of the base.html is present in every website page. In the following, those features are presented that are extended from the base.html file.
+
+
+
 
   
 
