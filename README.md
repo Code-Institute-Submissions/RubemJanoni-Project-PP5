@@ -62,7 +62,7 @@ These keywords are listed in the Meta block of the head section in the base.html
 
 For a social media marketing approach, a Facebook Business Page has been created, that represents the business. As the Facebook profile image, an authentic Italian pizza coming out of the oven was used. Also, in this project and on the Facebook profile, images of the Mario Bros character generated in AI were used.
 
-- ![Facebook Page](https://www.facebook.com/profile.php?id=61556196362714)
+-![Facebook Page](https://www.facebook.com/profile.php?id=61556196362714)
 
 ![Facebook page](static/images/face-lamama-english.jpg)
 
