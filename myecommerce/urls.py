@@ -1,7 +1,7 @@
 
 from django.contrib import admin
-from django.urls import path, include, re_path
-from .views import home_page, about_page, contact_page,  login_page, logout_page, RegisterView, contact_success, handler404, handler500
+from django.urls import path, include
+from .views import home_page, about_page, contact_page,  login_page, logout_page, RegisterView, contact_success
 
 
 urlpatterns = [
