@@ -64,9 +64,9 @@ For a social media marketing approach, a Facebook Business Page has been created
 
 - [Facebook Page](https://www.facebook.com/profile.php?id=61556196362714)
 
-  [Facebook page](static/images/face-lammama-english.jpg)
+  [Facebook page](static/images/face-lamamma-english.jpg)
 
-  [Facebook page](static/images/face-lammama04.jpg)
+  [Facebook page](static/images/face-lamamma04.jpg)
 
 
 
