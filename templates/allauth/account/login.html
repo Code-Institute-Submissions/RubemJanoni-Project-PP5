@@ -13,7 +13,7 @@
       
       <div class="text-center mt-4 mb-2">
           <img class="mb-3" src="{% static 'images/pizza-login3.png' %}" alt="pizza" width="60" height="60"/>
-          <h1 class="h3 font-weight-normal text-white">{% trans "Sign In" %}</h1>
+          <h1 class="h3 font-weight-normal text-white">{% trans "Login" %}</h1>
       </div>
       {% get_providers as socialaccount_providers %}
 
@@ -36,7 +36,7 @@
       
       {% else %}
       <p class="text-white">{% blocktrans %}If you have not created an account yet, then please
-      <a href="{{ signup_url }}" class="ms-2"><strong>Sign Up</strong></a>{% endblocktrans %}</p>
+      <a href="{{ signup_url }}"><strong>Register</strong></a>{% endblocktrans %} here</p>
       {% endif %}
 
                   
@@ -54,7 +54,7 @@
             <a class="form-check" href="{% url 'account_reset_password' %}" class="ms-2"><strong>{% trans "Forgot Password?" %}</strong></a>
           </div>
           <div class="col-12 my-2">
-              <button type="submit" class="col-12 btn btn-success btn-sm">Sign In</button>
+              <button type="submit" class="col-12 btn btn-success btn-sm">Login</button>
           </div>        
       </div>
       

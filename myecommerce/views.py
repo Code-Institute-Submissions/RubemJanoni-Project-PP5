@@ -136,7 +136,7 @@ class RegisterView(CreateView, SuccessMessageMixin):
             return redirect('home')
         return super().dispatch(request, *args, **kwargs)
 
-def logout_page(request):
+def logout_page(request):    
     logout(request)
     messages.success(request, 'Logged out successfully.')
     return redirect('login')
@@ -144,13 +144,12 @@ def logout_page(request):
 
 # INFO USER
 class UserProfileView(DetailView):
-     """
+    """
     View for displaying user profile information.
 
     - Shows user details.
     - Retrieves the user's address assuming there is only one address per user.
     """
-
     model = User
     template_name = 'management/profile_user.html'
     context_object_name = 'user_profile'
@@ -238,9 +237,9 @@ class AddressDeleteView(LoginRequiredMixin, DeleteView, SuccessMessageMixin):
 
 # ERRORS
 def handler404(request, exception=None):
-    context = {'error_message': 'Oops! A página que você está procurando não foi encontrada.'}
-    return render(request, '404.html', context, status=404)
+    context = {'error_message': 'Oops! The page you are looking for was not found'}
+    return render(request, 'error404.html', context, status=404)
 
 def handler500(request, exception=None):
-    context = {'error_message':'Oops! Houve um erro interno no servidor. Tente novamente depois'}
-    return render(request,'500.html', context, status=500)
+    context = {'error_message':'Oops! There was an internal server error. Try again later'}
+    return render(request,'error500.html', context, status=500)

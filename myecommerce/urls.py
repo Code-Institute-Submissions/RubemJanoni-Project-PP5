@@ -20,5 +20,5 @@ urlpatterns = [
     # ERRO 404
     # Adicione a seguinte linha para lidar com o erro 404
     re_path(r'^.*/$', handler404),
-    re_path(r'^.*/500/$', handler500),
+    re_path(r'^.*/500/$', handler500)
 ]
