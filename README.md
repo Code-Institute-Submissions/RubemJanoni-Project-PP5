@@ -134,6 +134,28 @@ The responsive navigation bar consists of the La Mamma Pizza logo, the navigatio
 ![Navbar](static/images/lamamma-checkout.jpg)
 
 
+### Register
+
+Users can register for an account by clicking the dropdown menu item 'Register' of the 'My Account' icon. They will be lead to the Register page, where they are asked to enter their email address, a username and a password.
+
+![Register](static/images/lamamma-register.jpg)
+
+
+### About
+
+The about page area presents a bit of the company's history and offers users the option to subscribe to our Mailchimp newsletter, as well as access to the Facebook social media link.
+
+![About](static/images/lamamma-about.jpg)
+
+![About](static/images/lamamma-subscribe.jpg)
+
+
+
+
+
+
+
+
 
 
 
